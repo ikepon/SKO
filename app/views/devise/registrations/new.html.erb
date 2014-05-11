@@ -1,0 +1,135 @@
+<h2>新規会員登録</h2>
+<div class="col-xs-12">
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <div class="col-sm-6">
+      <%= f.email_field :email, :autofocus => true, :class => 'form-control', :placeholder => 'メールアドレス' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-6">
+      <%= f.text_field :name, :class => 'form-control', :placeholder => 'ユーザーネーム' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-6">
+      <%= f.password_field :password, :class => 'form-control', :placeholder => 'パスワード' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-6">
+      <%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => 'パスワード（確認用）' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-xs-3">
+      <%= f.label :sex, '　性別：　' %>
+    </div>
+    <div class="col-xs-9">
+      <label><%= f.radio_button :sex, '男性', :checked => true %>男性</label>　
+      <label><%= f.radio_button :sex, '女性' %>女性</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-xs-3">
+      <%= f.label :grade, '学年(学齢)：' %><br />
+    </div>
+    <div class="col-xs-9">
+      <label><%= f.radio_button :grade, '1' %>小学生以下</label><br />
+      <label><%= f.radio_button :grade, '2' %>中学1年生</label><br />
+      <label><%= f.radio_button :grade, '3' %>中学2年生</label><br />
+      <label><%= f.radio_button :grade, '4' %>中学3年生</label><br />
+      <label><%= f.radio_button :grade, '5' %>高校1年生</label><br />
+      <label><%= f.radio_button :grade, '6' %>高校2年生</label><br />
+      <label><%= f.radio_button :grade, '7' %>高校3年生</label><br />
+      <label><%= f.radio_button :grade, '8' %>それ以上</label><br />
+    </div>
+  </div>
+
+  <div class="form-group">
+  <div class="col-xs-3">
+    <%= f.label :prefecture, '都道府県' %>
+  </div>
+  <div class="col-xs-2">
+  <%= f.select :prefecture, [["北海道",'1'],
+["青森県",'2'],
+["岩手県",'3'],
+["秋田県",'4'],
+["宮城県",'5'],
+["山形県",'6'],
+["福島県",'7'],
+["茨城県",'8'],
+["栃木県",'9'],
+["群馬県",'10'],
+["埼玉県",'11'],
+["千葉県",'12'],
+["東京都",'13'],
+["神奈川県",'14'],
+["新潟県",'15'],
+["福井県",'16'],
+["石川県",'17'],
+["富山県",'18'],
+["静岡県",'19'],
+["山梨県",'20'],
+["長野県",'21'],
+["愛知県",'22'],
+["岐阜県",'23'],
+["三重県",'24'],
+["和歌山県",'25'],
+["滋賀県",'26'],
+["奈良県",'27'],
+["京都府",'28'],
+["大阪府",'29'],
+["兵庫県",'30'],
+["岡山県",'31'],
+["広島県",'32'],
+["鳥取県",'33'],
+["島根県",'34'],
+["山口県",'35'],
+["香川県",'36'],
+["徳島県",'37'],
+["愛媛県",'38'],
+["高知県",'39'],
+["福岡県",'40'],
+["佐賀県",'41'],
+["長崎県",'42'],
+["大分県",'43'],
+["熊本県",'44'],
+["宮崎県",'45'],
+["鹿児島県",'46'],
+["沖縄県",'47']], {}, {:class => 'form-control'} %>
+  </div>
+</div>
+
+  <div class="form-group">
+    <div class="col-xs-3">
+      <%= f.label :avatar, 'ユーザー画像' %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.file_field :avatar, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-xs-9 col-xs-offset-3">
+      <label><br ><%= f.check_box :mailmag, {:class => 'chk'}, '1', '0' %>毎週の学習レポートを受け取る</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-xs-9 col-xs-offset-3">
+      <%= f.submit "会員登録する", :class => 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>
+
+<hr class="col-xs-11">
+</div>
+<%= render "devise/shared/links" %>

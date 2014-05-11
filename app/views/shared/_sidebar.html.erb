@@ -1,0 +1,65 @@
+        <div class="sidebar">
+          <h4>新着レッスン</h4>
+          <ul>
+            <% if @new_lessons.present? %>
+              <% @new_lessons.each do |lesson| %>
+                <li class="sidebar-indent"><%= lesson.created_at.strftime('%y.%m.%d') %> <%= link_to '【中学'+lesson.lesson_grade.to_s+'年生】'+lesson.lesson_unit_name+'：'+lesson.lesson_unit_item_name , '/grade'+lesson.lesson_grade.to_s+'/'+lesson.lesson_unit_item_name %></li>
+              <% end %>
+            <% else %>
+              <li>準備中です</li>
+            <% end %>
+              <li class="text-right"><a href="/lessons/new_lessons">新着レッスン一覧</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar">
+          <h4>人気レッスン</h4>
+          <ul>
+            <% if @popular_lessons_all.present? %>
+              <% @count = 0 %>
+              <% @popular_lessons_all.each do |lesson_id| %>
+                <% if @count < 5 %>
+                  <li class="sidebar-indent"><a href="/popular/1">【中学<%= lesson_id %>年生】</a></li>
+                  <% @count += 1 %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <li>準備中です</li>
+            <% end %>
+            <li class="text-right"><a href="/infos">人気レッスン一覧</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar">
+          <h4>ユーザ情報</h4>
+          <ul>
+            <li class="sidebar-indent">登録者数：<%= @users_total %>人</li>
+            <% if @users_grade.present? %>
+              <% @count = 0 %>
+                <% @users_grade.each do |choice, num| %>
+                  <% if choice == 2 || choice == 3 || choice == 4 %>
+                    <li class="sidebar-indent">　中学<%= choice - 1 %>年生；<%= num %>人</li>
+                  <% else %>
+                    <% @count += num %>
+                  <% end %>
+                <% end %>
+              <li class="sidebar-indent">　それ以外：<%= @count %>人</li>
+            <% end %>
+
+            <li class="sidebar-indent">平均完了レッスン：<%= @average_comp %>レッスン</li>
+            <li class="sidebar-indent">平均チェックレッスン：<%= @average_check %>レッスン</li>
+          </ul>
+        </div>
+
+        <div class="sidebar">
+          <h4>ソーシャル</h4>
+          <ul>
+            <li>
+              <a href="https://twitter.com/twitteraccount" class="twitter-follow-button" data-show-count="false" data-lang="ja">@twitteraccountさんをフォロー</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </li>
+            <li>
+              <div class="fb-like" data-href="https://www.facebook.com/FBaccount" data-width="240" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+            </li>
+          </ul>
+        </div>

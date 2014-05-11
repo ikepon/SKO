@@ -1,0 +1,66 @@
+          <div class="row">
+            <% @lesson_info.each do |lesson| %>
+            <div class="col-xs-10">
+              <h2><%= lesson.lesson_name %></h2>
+            </div>
+            <div class="col-xs-2">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <div class="col-xs-offset-4 col-xs-8">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="<%= lesson.id %>">★
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-xs-12">
+              <p><%= lesson.lesson_summary %></p>
+            </div>
+            <div class="col-xs-12">
+              <%= image_tag '640x360.png', :alt => 'lesson_movie', :class => 'img-responsive lesson_movie'%>
+            </div>
+            <div class="col-xs-12 movie_button">
+              <div class="col-xs-4 lesson_pre">
+                <button type="button" class="btn btn-default" onclick="location.href='/'" style="width:80px;">前へ</button>
+              </div>
+              <div class="col-xs-4 lesson_movie">
+                <button type="button" class="btn btn-default" onclick="location.href='/'" style="width:80px;">完了</button>
+              </div>
+              <div class="col-xs-4 lesson_next">
+                <button type="button" class="btn btn-default" onclick="location.href='/'" style="width:80px;">次へ</button>
+              </div>
+            </div>
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#explanation" data-toggle="tab">解説</a></li>
+              <li><a href="#exercise" data-toggle="tab">練習問題</a></li>
+              <li><a href="#answer" data-toggle="tab">練習問題回答</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="explanation">
+                <p><%= raw(lesson.lesson_explanation) %></p>
+              </div>
+              <div class="tab-pane" id="exercise">
+                <p><%= raw(lesson.lesson_exercise) %></p>
+              </div>
+              <div class="tab-pane" id="answer">
+                <p><%= raw(lesson.lesson_exercise_answer) %></p>
+              </div>
+            </div>
+            <hr>
+            <h3>要点・まとめ</h3>
+              <p><%= raw(lesson.lesson_point) %></p>
+            <h3>学習メモ</h3>
+            <form>
+              <fieldset>
+                <div class="form-group">
+                  <label for="exampleInput">レッスン内容などについて気になることを記入してください。</label>
+                  <input type="text" class="form-control" id="exampleInput" placeholder="メモ" style="height: 120px;">
+                </div>
+                <button type="submit" class="btn btn-default">メモを残す</button>
+              </fieldset>
+            </form>
+            <% end %>
+          </div>

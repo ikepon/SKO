@@ -1,0 +1,157 @@
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#grade1" data-toggle="tab">中学1年生</a></li>
+              <li><a href="#grade2" data-toggle="tab">中学2年生</a></li>
+              <li><a href="#grade3" data-toggle="tab">中学3年生</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="grade1">
+                <div class="row">
+                  <div class="col-md-6">
+                    <% if @grade1_units.present? %>
+                      <% @grade1_units.each do |unit| %>
+                        <h3><%= unit.lesson_unit_name %></h3>
+                        <ul>
+                        <% @grade1_units_all.each do |item| %>
+                          <% if item.lesson_unit_name == unit.lesson_unit_name %>
+                            <li><%= item.lesson_unit_item_name %></li>
+                          <% end %>
+                        <% end %>
+                        </ul>
+                      <% end %>
+                    <% else %>
+                      <ul>
+                        <li>準備中です</li>
+                      </ul>
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <h3>関数</h3>
+                    <ul>
+                      <li>関数</li>
+                      <li>比例</li>
+                      <li>反比例</li>
+                      <li>座標</li>
+                      <li>比例グラフ</li>
+                      <li>反比例グラフ</li>
+                    </ul>
+                    <h3>図形</h3>
+                    <ul>
+                      <li>図形（用語と記号）</li>
+                      <li>図形の移動</li>
+                      <li>作図</li>
+                      <li>円とおうぎ形</li>
+                      <li>おうぎ形の弧、面積</li>
+                    </ul>
+                    <h3>資料</h3>
+                    <ul>
+                      <li>近似値</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="grade2">
+                <div class="row">
+                  <div class="col-md-6">
+                    <% if @grade2_units.present? %>
+                      <% @grade2_units.each do |unit| %>
+                        <h3><%= unit.lesson_unit_name %></h3>
+                        <ul>
+                        <% @grade2_units_all.each do |item| %>
+                          <% if item.lesson_unit_name == unit.lesson_unit_name %>
+                            <li><%= item.lesson_unit_item_name %></li>
+                          <% end %>
+                        <% end %>
+                        </ul>
+                      <% end %>
+                    <% else %>
+                      <ul>
+                        <li>準備中です</li>
+                      </ul>
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <h3>1次関数</h3>
+                    <ul>
+                      <li>1次関数</li>
+                      <li>1次関数　変化の割合</li>
+                      <li>1次関数　式の出し方</li>
+                      <li>1次関数　変域</li>
+                      <li>直線の式、平行、交点</li>
+                      <li>1次関数の応用（動点）</li>
+                    </ul>
+                    <h3>図形</h3>
+                    <ul>
+                      <li>角度（準備）</li>
+                      <li>錯角と同位角</li>
+                      <li>対頂角、内角の和、外角の和</li>
+                      <li>角度</li>
+                      <li>合同条件</li>
+                      <li>合同の証明</li>
+                      <li>二等辺三角形</li>
+                      <li>直角三角形</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="grade3">
+                <div class="row">
+                  <div class="col-md-6">
+                    <% if @grade3_units.present? %>
+                      <% @grade3_units.each do |unit| %>
+                        <h3><%= unit.lesson_unit_name %></h3>
+                        <ul>
+                        <% @grade3_units_all.each do |item| %>
+                          <% if item.lesson_unit_name == unit.lesson_unit_name %>
+                            <li><%= item.lesson_unit_item_name %></li>
+                          <% end %>
+                        <% end %>
+                        </ul>
+                      <% end %>
+                    <% else %>
+                      <ul>
+                        <li>準備中です</li>
+                      </ul>
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <h3>2次方程式</h3>
+                    <ul>
+                      <li>2次方程式（平方根）</li>
+                      <li>2次方程式（因数分解）</li>
+                      <li>2次方程式（解の公式）</li>
+                    </ul>
+                    <h3>関数</h3>
+                    <ul>
+                      <li>2乗に比例する関数</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% unless @search_lessons == '' %>
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>学年</th>
+                    <th>単元</th>
+                    <th>単元項目名</th>
+                    <th>レッスン名</th>
+                    <th>レッスン概要</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @search_lessons.each do |lesson| %>
+                  <tr>
+                    <td>中学<%= lesson.lesson_grade %>年生</td>
+                    <td><%= lesson.lesson_unit_name %></td>
+                    <td><%= lesson.lesson_unit_item_name %></td>
+                    <td><%= lesson.lesson_name %></td>
+                    <td><%= lesson.lesson_summary %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <%= paginate @search_lessons %>
+            <% end %>

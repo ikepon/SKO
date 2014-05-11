@@ -1,0 +1,35 @@
+<div class="global">
+    <nav class="navbar navbar-default navbar-fixed-top col-lg-12">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">サイト名</a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <li><a href="/mypage">マイページ</a></li>
+            <% end %>
+            <li<% if params[:controller] == 'grade1' %><%= ' class=active' %><% end %>><%= link_to '中学1年生', grade1_index_path %></li>
+            <li<% if params[:controller] == 'grade2' %><%= ' class=active' %><% end %>><%= link_to '中学2年生', grade2_index_path %></li>
+            <li<% if params[:controller] == 'grade3' %><%= ' class=active' %><% end %>><%= link_to '中学3年生', grade3_index_path %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/contact">お問合せ</a></li>
+            <li>
+              <% if user_signed_in? %>
+                <%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
+              <% else %>
+                <%= link_to "ログイン", new_user_session_path %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+</div>

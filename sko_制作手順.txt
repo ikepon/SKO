@@ -1,0 +1,64 @@
+●プロジェクトの作成
+  rails new sko
+
+●gem devise のインストール
+gemfileに以下を追記
+  gem 'devise'
+コマンドでbundle install
+  rails g devise:install
+  rails g devise User
+
+  migrationファイルを修正
+
+●Lessonsコントローラーの作成
+  rails g controller lessons index home show new_lesson category agreement privacy
+
+●routeの設定
+  root :to => 'lessons#home'
+
+●サーバー再起動してアクセス
+  コントローラーに　before_action :authenticate_user!　を追加
+
+●
+
+●deviseのビューを修正
+
+●モデルの作成
+・lesson
+  rails g model lesson title:string summary:string movie:string time:time grade:integer category_name:string category_summary:string unit_name:string unit_summary:string unit_item_name:string unit_item_summary:string explanation:string exercise:string exercise_answer:string point:string number:integer
+
+・learning
+  rails g model learning user:references lesson:references status:boolean memo:string check:boolean complete_date:datetime
+
+・friend
+  rails g model friend user_id1:integer user_id2:integer status:boolean
+
+・message
+  rails g model message friend:references user:references message_content:string
+
+・faq_category
+  rails g model faq_category faq_category_name:string faq_category_summary:string
+
+・faq
+  rails g model faq question:string answer:string faq_category:references
+
+
+・agreement
+  rails g model agreement content:string
+
+・privacy
+  rails g model privacy content:string
+
+●active_admin のインストールから設定まで
+http://ameblo.jp/hbnizm31/entrylist-2.html
+
+・管理画面にモデルを登録
+  rails g active_admin:resource Contact
+  rails g active_admin:resource Faq
+  rails g active_admin:resource Faq_category
+  rails g active_admin:resource Friend
+  rails g active_admin:resource Learning
+  rails g active_admin:resource Lesson
+  rails g active_admin:resource Message
+  rails g active_admin:resource Privacy
+  rails g active_admin:resource User

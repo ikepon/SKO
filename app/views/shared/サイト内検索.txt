@@ -1,0 +1,20 @@
+<div id='user_nav'>
+  <% if user_signed_in? %>
+    Signed in as <%= current_user.email %>. <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> or
+    <%= link_to "Sign in", new_user_session_path %>
+  <% end %>
+</div>
+
+
+
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <%= search_form_for @search do |f| %>
+                <!-- <%= f.label :summary %> -->
+                <%= f.text_field :summary_cont, :placeholder => "サイト内検索", :size => "13px", :class => "form-control" %>
+                <%= f.submit '検索', :class => "btn btn-default" %>
+              <% end %>
+            </div>
+          </form>
