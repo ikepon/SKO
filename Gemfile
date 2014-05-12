@@ -34,6 +34,7 @@ end
 
 # ログイン機能
 gem 'devise'
+# gem 'protected_attributes'
 
 # ユーザ画像挿入
 gem 'paperclip', '~> 3.0'
@@ -49,6 +50,9 @@ gem 'breadcrumbs_on_rails'
 
 # 管理画面
 gem 'activeadmin', github: 'gregbell/active_admin'
+
+# 管理画面　csvデータ アップロード
+gem 'active_admin_importable'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

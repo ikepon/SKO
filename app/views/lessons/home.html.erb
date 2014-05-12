@@ -9,11 +9,11 @@
                   <div class="col-md-6">
                     <% if @grade1_units.present? %>
                       <% @grade1_units.each do |unit| %>
-                        <h3><%= unit.lesson_unit_name %></h3>
+                        <h3><%= unit.unit_name %></h3>
                         <ul>
                         <% @grade1_units_all.each do |item| %>
-                          <% if item.lesson_unit_name == unit.lesson_unit_name %>
-                            <li><%= link_to item.lesson_unit_item_name, 'grade1/' + item.lesson_unit_item_name %></li>
+                          <% if item.unit_name == unit.unit_name %>
+                            <li><%= link_to item.unit_item_name, 'grade1/' + item.unit_item_name %></li>
                           <% end %>
                         <% end %>
                         </ul>
@@ -54,11 +54,11 @@
                   <div class="col-md-6">
                     <% if @grade2_units.present? %>
                       <% @grade2_units.each do |unit| %>
-                        <h3><%= unit.lesson_unit_name %></h3>
+                        <h3><%= unit.unit_name %></h3>
                         <ul>
                         <% @grade2_units_all.each do |item| %>
-                          <% if item.lesson_unit_name == unit.lesson_unit_name %>
-                            <li><%= link_to item.lesson_unit_item_name, 'grade2/' + item.lesson_unit_item_name %></li>
+                          <% if item.unit_name == unit.unit_name %>
+                            <li><%= link_to item.unit_item_name, 'grade2/' + item.unit_item_name %></li>
                           <% end %>
                         <% end %>
                         </ul>
@@ -98,11 +98,11 @@
                   <div class="col-md-6">
                     <% if @grade3_units.present? %>
                       <% @grade3_units.each do |unit| %>
-                        <h3><%= unit.lesson_unit_name %></h3>
+                        <h3><%= unit.unit_name %></h3>
                         <ul>
                         <% @grade3_units_all.each do |item| %>
-                          <% if item.lesson_unit_name == unit.lesson_unit_name %>
-                            <li><%= link_to item.lesson_unit_item_name, 'grade3/' + item.lesson_unit_item_name %></li>
+                          <% if item.unit_name == unit.unit_name %>
+                            <li><%= link_to item.unit_item_name, 'grade3/' + item.unit_item_name %></li>
                           <% end %>
                         <% end %>
                         </ul>

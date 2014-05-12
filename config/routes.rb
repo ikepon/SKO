@@ -1,4 +1,5 @@
 Sko::Application.routes.draw do
+  get "faq/index"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get "contact/index"
@@ -26,6 +27,13 @@ Sko::Application.routes.draw do
     :registrations => "users/registrations",
     :passwords     => "users/passwords"
   }
+
+  match 'grade1/:type' => 'grade1#tangen', via: :get
+  match 'grade1/:type/:lesson' => 'grade1#show', via: :get
+  match 'grade2/:type' => 'grade2#tangen', via: :get
+  match 'grade2/:type/:lesson' => 'grade2#show', via: :get
+  match 'grade3/:type' => 'grade3#tangen', via: :get
+  match 'grade3/:type/:lesson' => 'grade3#show', via: :get
 
   get 'agreement' => 'lessons#agreement'
   get 'privacy' => 'lessons#privacy'

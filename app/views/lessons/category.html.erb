@@ -4,11 +4,11 @@
                     <%= image_tag '740x320.png', :alt => 'Main_Visual', :class => 'img-responsive bottom20'%>
                     <% if @categories.present? %>
                       <% @categories.each do |cat| %>
-                        <h3 id="<%= cat.lesson_category_name %>"><%= cat.lesson_category_name %></h3>
+                        <h3 id="<%= cat.category_name %>"><%= cat.lesson_category_name %></h3>
                         <ul>
                         <% @category_lessons_all.each do |lesson| %>
-                          <% if lesson.lesson_category_name == cat.lesson_category_name %>
-                            <li>【中学<%= lesson.lesson_grade %>年生】<%= link_to lesson.lesson_unit_name + '：' + lesson.lesson_unit_item_name, '/grade' + lesson.lesson_grade.to_s + '/' + lesson.lesson_unit_item_name %></li>
+                          <% if lesson.category_name == cat.category_name %>
+                            <li>【中学<%= lesson.grade %>年生】<%= link_to lesson.unit_name + '：' + lesson.unit_item_name, '/grade' + lesson.grade.to_s + '/' + lesson.unit_item_name %></li>
                           <% end %>
                         <% end %>
                         </ul>

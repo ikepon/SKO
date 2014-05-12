@@ -1,7 +1,7 @@
           <div class="row">
             <% @lesson_info.each do |lesson| %>
             <div class="col-xs-10">
-              <h2><%= lesson.lesson_name %></h2>
+              <h2><%= lesson.title %></h2>
             </div>
             <div class="col-xs-2">
               <form class="form-horizontal">
@@ -17,7 +17,7 @@
               </form>
             </div>
             <div class="col-xs-12">
-              <p><%= lesson.lesson_summary %></p>
+              <p><%= lesson.summary %></p>
             </div>
             <div class="col-xs-12">
               <%= image_tag '640x360.png', :alt => 'lesson_movie', :class => 'img-responsive lesson_movie'%>
@@ -40,18 +40,18 @@
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="explanation">
-                <p><%= raw(lesson.lesson_explanation) %></p>
+                <p><%= raw(lesson.explanation) %></p>
               </div>
               <div class="tab-pane" id="exercise">
-                <p><%= raw(lesson.lesson_exercise) %></p>
+                <p><%= raw(lesson.exercise) %></p>
               </div>
               <div class="tab-pane" id="answer">
-                <p><%= raw(lesson.lesson_exercise_answer) %></p>
+                <p><%= raw(lesson.exercise_answer) %></p>
               </div>
             </div>
             <hr>
             <h3>要点・まとめ</h3>
-              <p><%= raw(lesson.lesson_point) %></p>
+              <p><%= raw(lesson.point) %></p>
             <h3>学習メモ</h3>
             <form>
               <fieldset>

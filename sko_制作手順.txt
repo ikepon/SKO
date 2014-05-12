@@ -23,6 +23,9 @@ gemfileに以下を追記
 
 ●deviseのビューを修正
 
+●userのカラム名変更
+rails g migration RenameBooleanToUser MailmagBoolean
+
 ●モデルの作成
 ・lesson
   rails g model lesson title:string summary:string movie:string time:time grade:integer category_name:string category_summary:string unit_name:string unit_summary:string unit_item_name:string unit_item_summary:string explanation:string exercise:string exercise_answer:string point:string number:integer
@@ -53,12 +56,18 @@ gemfileに以下を追記
 http://ameblo.jp/hbnizm31/entrylist-2.html
 
 ・管理画面にモデルを登録
-  rails g active_admin:resource Contact
-  rails g active_admin:resource Faq
-  rails g active_admin:resource Faq_category
-  rails g active_admin:resource Friend
-  rails g active_admin:resource Learning
-  rails g active_admin:resource Lesson
-  rails g active_admin:resource Message
-  rails g active_admin:resource Privacy
-  rails g active_admin:resource User
+rails g active_admin:resource Contact
+rails g active_admin:resource Faq
+rails g active_admin:resource Faq_category
+rails g active_admin:resource Friend
+rails g active_admin:resource Learning
+rails g active_admin:resource Lesson
+rails g active_admin:resource Message
+rails g active_admin:resource Privacy
+rails g active_admin:resource User
+
+・管理画面上で登録・変更できるカラムを定義する
+  【app/admin/モデル名.rb】内に記述する
+      permit_params :name, :address
+  その後、サーバーを再起動すればOK
+

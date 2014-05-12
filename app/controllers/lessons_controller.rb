@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
 
   add_breadcrumb 'Home', '/'
 
-  before_filter :authenticate_user!, :except => [:index, :home, :show, :new_lessons, :category, :agreement, :privacy]
+  # before_filter :authenticate_user!, :except => [:index, :home, :show, :new_lessons, :category, :agreement, :privacy]
 
   protect_from_forgery
 
@@ -24,7 +24,6 @@ class LessonsController < ApplicationController
     @grade2_units_all = Lesson.where(:lesson_grade => '2').select('lesson_unit_name, lesson_unit_item_name').group('lesson_unit_item_name')
     @grade3_units = Lesson.where(:lesson_grade => '3').select('lesson_unit_name').group('lesson_unit_name')
     @grade3_units_all = Lesson.where(:lesson_grade => '3').select('lesson_unit_name, lesson_unit_item_name').group('lesson_unit_item_name')
-
 
     #search
     @search = ''

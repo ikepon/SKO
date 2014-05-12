@@ -1,14 +1,15 @@
-class Users::SessionsController < Devise::SessionsController
+class FaqController < ApplicationController
 
-  include ApplicationHelper
+  add_breadcrumb 'Home', '/'
 
-  before_filter :set_search
+  def index
 
-  def set_search
-  @search = Lesson.search(params[:q])
-  end
+    add_breadcrumb 'よくある質問'
 
-  def new
+    @title = 'よくある質問'
+    @description = '当サイトによせられる、よくある質問一覧です。'
+
+    @faqs = Faq.all
 
     #search
     @search = ''
@@ -41,14 +42,5 @@ class Users::SessionsController < Devise::SessionsController
     @footer_grade3 = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
     @footer_categories = Lesson.select('category_name').group('category_name')
 
-    super
-  end
-
-  def create
-    super
-  end
-
-  def destroy
-    super
   end
 end

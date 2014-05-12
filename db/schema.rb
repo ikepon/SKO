@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140511051221) do
+ActiveRecord::Schema.define(version: 20140512054809) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20140511051221) do
     t.string   "sex",                                    null: false
     t.integer  "grade",                                  null: false
     t.string   "prefecture",                             null: false
-    t.boolean  "boolean",                default: false, null: false
+    t.boolean  "mailmag",                default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar_file_name"

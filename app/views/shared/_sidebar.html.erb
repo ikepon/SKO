@@ -3,7 +3,7 @@
           <ul>
             <% if @new_lessons.present? %>
               <% @new_lessons.each do |lesson| %>
-                <li class="sidebar-indent"><%= lesson.created_at.strftime('%y.%m.%d') %> <%= link_to '【中学'+lesson.lesson_grade.to_s+'年生】'+lesson.lesson_unit_name+'：'+lesson.lesson_unit_item_name , '/grade'+lesson.lesson_grade.to_s+'/'+lesson.lesson_unit_item_name %></li>
+                <li class="sidebar-indent"><%= lesson.created_at.strftime('%y.%m.%d') %> <%= link_to '【中学'+lesson.grade.to_s+'年生】'+lesson.unit_name+'：'+lesson.unit_item_name , '/grade'+lesson.grade.to_s+'/'+lesson.unit_item_name %></li>
               <% end %>
             <% else %>
               <li>準備中です</li>

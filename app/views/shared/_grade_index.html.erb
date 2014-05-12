@@ -6,11 +6,11 @@
                   <div class="col-md-6">
                     <% if @grade_units.present? %>
                       <% @grade_units.each do |unit| %>
-                        <h3 id="<%= unit.lesson_unit_name %>"><%= unit.lesson_unit_name %></h3>
+                        <h3 id="<%= unit.unit_name %>"><%= unit.unit_name %></h3>
                         <ul>
                         <% @grade_units_all.each do |item| %>
-                          <% if item.lesson_unit_name == unit.lesson_unit_name %>
-                            <li><%= link_to item.lesson_unit_item_name, item.lesson_unit_item_name %></li>
+                          <% if item.unit_name == unit.unit_name %>
+                            <li><%= link_to item.unit_item_name, item.unit_item_name %></li>
                           <% end %>
                         <% end %>
                         </ul>
