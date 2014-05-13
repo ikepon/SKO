@@ -1,28 +1,41 @@
-<h2>お問い合わせフォーム</h2>
+    <h2>お問合せフォーム</h2>
+    <% if @contact.errors.any? %>
+      <ul>
+        <% @contact.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
-<%= form_for @contact, :url => contact_create_path do |form| %>
-
-<table border="0" cellpadding="0" cellspacing="0" class="post">
-
-<tr>
-  <th><%= form.label :name %></th>
-  <td><%= form.text_field :name %></td>
-</tr>
-
-<tr>
-  <th><%= form.label :email %></th>
-  <td><%= form.text_field :email %></td>
-</tr>
-
-<tr>
-  <th><%= form.label :content %></th>
-  <td><%= form.text_area :content %></td>
-</tr>
-
-</table>
-
-<div class="actions">
-    <%= form.submit "メール送信" %>
-</div>
-
-<% end %>
+    <%= form_for @contact, :url => contact_path, :html => { :class => 'form-horizontal' } do |f| %>
+      <div class="form-group">
+        <div class="col-sm-6">
+          <%= f.text_field :name, :autofocus => true, :class => 'form-control', :placeholder => 'お名前'  %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-6">
+          <%= f.email_field :email, :autofocus => true, :class => 'form-control', :placeholder => 'メールアドレス' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-3">
+          <%= f.label :inquiry, 'お問合わせ内容：' %>
+        </div>
+        <div class="col-xs-9">
+          <label><%= f.radio_button :inquiry, '1', { :checked => true } %>レッスン内容について</label><br>
+          <label><%= f.radio_button :inquiry, '2' %>サイト運営について</label><br>
+          <label><%= f.radio_button :inquiry, '3' %>その他</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-6">
+          <%= f.text_area :content, :autofocus => true, :class => 'form-control', :placeholder => '具体的な内容' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-9 col-xs-offset-3">
+          <dd><%= f.submit "メール送信", :class => 'btn btn-default' %></dd>
+        </div>
+      </div>
+    <% end %>

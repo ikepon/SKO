@@ -1,2 +1,20 @@
-<h1>Faq#index</h1>
-<p>Find me in app/views/faq/index.html.erb</p>
+            <h2>よくある質問</h2>
+            <p>本サイトによせられる、レッスン内容、サイトなどに関するご質問、サービスに関するお問合わせをまとめましたので、ご覧いただければと思います。</p>
+            <p class="text-right"><%= link_to 'お問合わせに戻る', contact_new_path %></p>
+            <% if @faqs.present? %>
+              <dl id="faq">
+                <% @count = 1 %>
+                <% @faqs.each do |faq| %>
+                  <dt style="border-bottom: 1px solid #ccc; margin-bottom: 20px;">
+                    <div class="row">
+                      <div class="col-xs-11">Q<%= @count %>. <%= faq.question %></div>
+                      <div class="col-xs-1"><span class="caret"></span></div>
+                    </div>
+                  </dt>
+                  <dd><%= faq.answer %></dd>
+                  <% @count += 1 %>
+                <% end %>
+              </dl>
+            <% else %>
+              <p>準備中です</p>
+            <% end %>

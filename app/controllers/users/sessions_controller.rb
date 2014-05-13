@@ -10,13 +10,6 @@ class Users::SessionsController < Devise::SessionsController
 
   def new
 
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
-
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
     @popular_lessons_all = Learning.select('lesson_id').group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
@@ -44,11 +37,14 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
-  def create
+  def destroy
     super
   end
 
-  def destroy
-    super
+  protected
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_in) do |u|
+      u.permit(:email, :password, :password_confirmation)
+    end
   end
 end

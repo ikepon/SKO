@@ -1,3 +1,5 @@
+# coding utf-8
+
 class LessonsController < ApplicationController
 
   before_filter :authenticate_user!
@@ -19,8 +21,8 @@ class LessonsController < ApplicationController
     add_breadcrumb 'レッスン検索結果', '/lessons'
 
     #検索結果表示
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(10)
+    @search = Lesson.search(params[:q])
+    @search_lessons = @search.result.page(params[:page]).per(10)
 
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)

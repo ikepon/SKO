@@ -71,3 +71,5 @@ rails g active_admin:resource User
       permit_params :name, :address
   その後、サーバーを再起動すればOK
 
+・お問合わせにカラムを追加
+  rails g migration AddAttributionToContact inquiry:integer

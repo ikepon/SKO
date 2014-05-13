@@ -2,9 +2,12 @@ Sko::Application.routes.draw do
   get "faq/index"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get "contact/index"
-  get "contact/new"
-  get "contact/create"
+  # get "contact/index"
+  # get "contact/new"
+  # get "contact/create"
+  get 'contact/new' => 'contact#new', :as => 'contact'
+  post 'contact/new' => 'contact#create'
+  get 'contact:notice' => 'contact#index'
   get "grade3/index"
   get "grade3/tangen"
   get "grade3/show"

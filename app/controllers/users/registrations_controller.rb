@@ -49,12 +49,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
+
+    super
 
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
@@ -80,21 +76,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @footer_grade3 = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
     @footer_categories = Lesson.select('category_name').group('category_name')
 
-    super
   end
 
-  def create
-    super
-  end
+  # def create
+  #   super
+  # end
 
-  def resource_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :remember_me, :avatar, :user_auth, :sex, :grade, :prefecture, :mailmag)
-  end
-  private :resource_params
+  # def resource_params
+  #   params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :remember_me, :avatar, :user_auth, :sex, :grade, :prefecture, :mailmag)
+  # end
+  # private :resource_params
 
   protected
 
-  # my custom fields are :name, :heard_how
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:name, :avatar, :user_auth, :sex, :grade, :prefecture, :mailmag,

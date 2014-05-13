@@ -26,7 +26,7 @@
             <% end %>
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/contact">お問合せ</a></li>
+            <li><%= link_to 'お問合せ', contact_path %></li>
             <li>
               <% if user_signed_in? %>
                 <%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
