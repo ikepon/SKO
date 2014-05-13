@@ -14,9 +14,9 @@
                     <tbody>
                       <% @new_lessons_main.each do |lesson| %>
                         <tr>
-                          <td>中学<%= lesson.lesson_grade %>年生</td>
-                          <td><%= lesson.lesson_unit_name %></td>
-                          <td><%= lesson.lesson_unit_item_name %></td>
+                          <td>中学<%= lesson.grade %>年生</td>
+                          <td><%= lesson.unit_name %></td>
+                          <td><%= lesson.unit_item_name %></td>
                           <td><%= lesson.created_at.strftime('%y.%m.%d') %></td>
                         </tr>
                       <% end %>

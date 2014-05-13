@@ -19,6 +19,12 @@
             <li<% if params[:controller] == 'grade2' %><%= ' class=active' %><% end %>><%= link_to '中学2年生', grade2_index_path %></li>
             <li<% if params[:controller] == 'grade3' %><%= ' class=active' %><% end %>><%= link_to '中学3年生', grade3_index_path %></li>
           </ul>
+          <div class="form-group navbar-form navbar-left">
+            <%= search_form_for @search, url: lessons_path do |f| %>
+              <%= f.text_field :summary_or_title_or_grade_or_category_name_or_category_summary_or_unit_name_or_unit_summary_or_unit_item_name_or_unit_item_summary_cont, :placeholder => "レッスン検索", :size => "13px", :class => "form-control" %>
+              <%= f.submit '検索', :class => "btn btn-default" %>
+            <% end %>
+          </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/contact">お問合せ</a></li>
             <li>

@@ -13,6 +13,6 @@ class User < ActiveRecord::Base
   has_many :learnings
   has_many :messages
 
-  validates :name, :avatar, :sex, :grade, :prefecture, :mailmag, presence: true
+  validates :name, :avatar, :sex, :grade, :prefecture, presence: true
 
 end

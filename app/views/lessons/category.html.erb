@@ -4,7 +4,7 @@
                     <%= image_tag '740x320.png', :alt => 'Main_Visual', :class => 'img-responsive bottom20'%>
                     <% if @categories.present? %>
                       <% @categories.each do |cat| %>
-                        <h3 id="<%= cat.category_name %>"><%= cat.lesson_category_name %></h3>
+                        <h3 id="<%= cat.category_name %>"><%= cat.category_name %></h3>
                         <ul>
                         <% @category_lessons_all.each do |lesson| %>
                           <% if lesson.category_name == cat.category_name %>

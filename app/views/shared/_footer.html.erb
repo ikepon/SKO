@@ -4,7 +4,7 @@
           <% if @footer_grade1.present? %>
             <ul>
               <% @footer_grade1.each do |unit| %>
-                <li><%= link_to unit.unit_name, '/grade1/index/#' + unit.unit_name %></li>
+                <li><%= link_to unit.unit_name, '/grade1/index#' + unit.unit_name %></li>
               <% end %>
             </ul>
           <% else %>
@@ -14,7 +14,7 @@
           <% if @footer_grade2.present? %>
             <ul>
               <% @footer_grade2.each do |unit| %>
-                <li><%= link_to unit.unit_name, '/grade2/index/#' + unit.unit_name %></li>
+                <li><%= link_to unit.unit_name, '/grade2/index#' + unit.unit_name %></li>
               <% end %>
             </ul>
           <% else %>
@@ -28,7 +28,7 @@
           <% if @footer_grade3.present? %>
             <ul>
               <% @footer_grade3.each do |unit| %>
-                <li><%= link_to unit.unit_name, '/grade3/index/#' + unit.unit_name %></a></li>
+                <li><%= link_to unit.unit_name, '/grade3/index#' + unit.unit_name %></a></li>
               <% end %>
             </ul>
           <% else %>

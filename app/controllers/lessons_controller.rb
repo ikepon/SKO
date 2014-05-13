@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
 
   add_breadcrumb 'Home', '/'
 
-  # before_filter :authenticate_user!, :except => [:index, :home, :show, :new_lessons, :category, :agreement, :privacy]
+  before_filter :authenticate_user!, :except => [:index, :home, :show, :new_lesson, :category, :agreement, :privacy]
 
   protect_from_forgery
 
@@ -18,19 +18,9 @@ class LessonsController < ApplicationController
 
     add_breadcrumb 'レッスン検索結果', '/lessons'
 
-    @grade1_units = Lesson.where(:lesson_grade => '1').select('lesson_unit_name').group('lesson_unit_name')
-    @grade1_units_all = Lesson.where(:lesson_grade => '1').select('lesson_unit_name, lesson_unit_item_name').group('lesson_unit_item_name')
-    @grade2_units = Lesson.where(:lesson_grade => '2').select('lesson_unit_name').group('lesson_unit_name')
-    @grade2_units_all = Lesson.where(:lesson_grade => '2').select('lesson_unit_name, lesson_unit_item_name').group('lesson_unit_item_name')
-    @grade3_units = Lesson.where(:lesson_grade => '3').select('lesson_unit_name').group('lesson_unit_name')
-    @grade3_units_all = Lesson.where(:lesson_grade => '3').select('lesson_unit_name, lesson_unit_item_name').group('lesson_unit_item_name')
-
-    #search
-    @search = ''
-    if params[:q] != ''
+    #検索結果表示
       @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
+      @search_lessons = @search.result.page(params[:page]).per(10)
 
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
@@ -66,13 +56,6 @@ class LessonsController < ApplicationController
     @grade3_units = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
     @grade3_units_all = Lesson.where(:grade => '3').select('unit_name, unit_item_name').group('unit_item_name')
 
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
-
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
     @popular_lessons_all = Learning.select('lesson_id').group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
@@ -103,28 +86,14 @@ class LessonsController < ApplicationController
     add_breadcrumb @lesson_title, lessons_index_path
   end
 
-  def new_lessons
+  def new_lesson
 
     add_breadcrumb '新着レッスン'
 
     @title = '新着レッスン一覧'
     @description = '新しく追加したレッスン一覧を紹介しています。'
 
-    @new_lessons_main = Lesson.select('lesson_grade, lesson_unit_name, lesson_unit_item_name, created_at').order('created_at DESC')
-
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
-
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
+    @new_lessons_main = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC')
 
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
@@ -158,15 +127,8 @@ class LessonsController < ApplicationController
     @title = 'レッスンカテゴリ一覧'
     @description = '各学年、各単元をカテゴリーに分けて紹介しています。'
 
-    @categories = Lesson.select('lesson_category_name').group('lesson_category_name')
-    @category_lessons_all = Lesson.select('lesson_grade, lesson_category_name,lesson_unit_name, lesson_unit_item_name').group('lesson_unit_item_name')
-
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
+    @categories = Lesson.select('category_name').group('category_name')
+    @category_lessons_all = Lesson.select('grade, category_name, unit_name, unit_item_name').group('unit_item_name')
 
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
@@ -214,13 +176,6 @@ class LessonsController < ApplicationController
 
     @rule = Agreement.all(:order => "created_at DESC", :limit => 1)
 
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
-
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
     @popular_lessons_all = Learning.select('lesson_id').group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
@@ -258,13 +213,6 @@ class LessonsController < ApplicationController
     '
 
     @rule = Privacy.all(:order => "created_at DESC", :limit => 1)
-
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
 
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)

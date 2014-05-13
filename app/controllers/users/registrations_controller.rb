@@ -3,6 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include ApplicationHelper
 
   before_filter :set_search
+  before_filter :configure_permitted_parameters
 
   protect_from_forgery
 
@@ -11,6 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def new
+
+    super
+
     #search
     @search = ''
     if params[:q] != ''
@@ -42,7 +46,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @footer_grade3 = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
     @footer_categories = Lesson.select('category_name').group('category_name')
 
-    super
   end
 
   def edit
@@ -88,6 +91,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :remember_me, :avatar, :user_auth, :sex, :grade, :prefecture, :mailmag)
   end
   private :resource_params
+
+  protected
+
+  # my custom fields are :name, :heard_how
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:name, :avatar, :user_auth, :sex, :grade, :prefecture, :mailmag,
+        :email, :password, :password_confirmation)
+    end
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:name,
+        :email, :password, :password_confirmation, :current_password)
+    end
+  end
 
   # def sign_up_params
   #   devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, :remember_me, :avatar, :user_auth, :sex, :grade, :prefecture, :mailmag) }

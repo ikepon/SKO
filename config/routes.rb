@@ -21,6 +21,7 @@ Sko::Application.routes.draw do
   get "lessons/category"
   get "lessons/agreement"
   get "lessons/privacy"
+  get "lessons", :to => 'lessons#index', :as => 'lessons'
 
   devise_for :users, :controllers => {
     :sessions      => "users/sessions",
