@@ -5,6 +5,12 @@ class Grade3Controller < ApplicationController
 
   protect_from_forgery
 
+  before_filter :set_search
+
+  def set_search
+  @search = Lesson.search(params[:q])
+  end
+
   def index
 
     @grade = '中学3年生'
@@ -17,17 +23,10 @@ class Grade3Controller < ApplicationController
     @grade_units = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
     @grade_units_all = Lesson.where(:grade => '3').select('unit_name, unit_item_name').group('unit_item_name')
 
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
-
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    @popular_lessons_all = Learning.select('lesson_id').group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    # @popular_lessons = Lesson.find(@popular_lessons_all).select('lesson_grade, lesson_unit_name')
+    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
+    @popular_lessons = Lesson.find(popular_lessons_ids)
 
     @users_total = User.all.count()
     @users_grade = User.group('grade').count('grade')
@@ -62,17 +61,10 @@ class Grade3Controller < ApplicationController
     @title = '中学3年生数学の' + @grade_unit_item_name
     @description = '中学3年生で勉強する数学の単元「' + @grade_unit_item_name + '」のレッスン一覧です。'
 
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
-
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    @popular_lessons_all = Learning.select('lesson_id').group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    # @popular_lessons = Lesson.find(@popular_lessons_all).select('lesson_grade, lesson_unit_name')
+    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
+    @popular_lessons = Lesson.find(popular_lessons_ids)
 
     @users_total = User.all.count()
     @users_grade = User.group('grade').count('grade')
@@ -108,17 +100,10 @@ class Grade3Controller < ApplicationController
     @title = '中学3年生数学の' + @lesson
     @description = '中学3年生で勉強する数学の単元「' + @grade_unit_item_name + '」の「'+ @lesson +'」内容です。'
 
-    #search
-    @search = ''
-    if params[:q] != ''
-      @search = Lesson.search(params[:q])
-      @search_lessons = @search.result.page(params[:page]).per(3)
-    end
-
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    @popular_lessons_all = Learning.select('lesson_id').group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    # @popular_lessons = Lesson.find(@popular_lessons_all).select('lesson_grade, lesson_unit_name')
+    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
+    @popular_lessons = Lesson.find(popular_lessons_ids)
 
     @users_total = User.all.count()
     @users_grade = User.group('grade').count('grade')

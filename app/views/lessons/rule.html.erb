@@ -1,5 +1,8 @@
 <% if @rule.present? %>
-  <%= raw(@rule) %>
+  <h2><%= @title %></h2>
+  <% @rule.each do |r| %>
+    <%= raw(r.content) %>
+  <% end %>
 <% else %>
   <p>準備中です</p>
 <% end %>

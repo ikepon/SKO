@@ -1,6 +1,6 @@
             <div class="col-xs-12">
-              <h2>新着レッスン一覧</h2>
-              <% if @new_lessons_main.present? %>
+              <h2>人気レッスン一覧</h2>
+              <% if @popular_lessons_main.present? %>
                 <div class="table-responsive">
                   <table class="table table-bordered table-hover">
                     <thead>
@@ -12,7 +12,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <% @new_lessons_main.each do |lesson| %>
+                      <% @popular_lessons_main.each do |lesson| %>
                         <tr>
                           <td>中学<%= lesson.grade %>年生</td>
                           <td><%= lesson.unit_name %></td>

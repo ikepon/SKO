@@ -21,8 +21,8 @@ class ContactController < ApplicationController
 
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    @popular_lessons_all = Learning.select('lesson_id').group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    # @popular_lessons = Lesson.find(@popular_lessons_all).select('lesson_grade, lesson_unit_name')
+    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
+    @popular_lessons = Lesson.find(popular_lessons_ids)
 
     @users_total = User.all.count()
     @users_grade = User.group('grade').count('grade')
@@ -51,8 +51,8 @@ class ContactController < ApplicationController
 
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    @popular_lessons_all = Learning.select('lesson_id').group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    # @popular_lessons = Lesson.find(@popular_lessons_all).select('lesson_grade, lesson_unit_name')
+    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
+    @popular_lessons = Lesson.find(popular_lessons_ids)
 
     @users_total = User.all.count()
     @users_grade = User.group('grade').count('grade')

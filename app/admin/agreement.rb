@@ -1,6 +1,7 @@
-ActiveAdmin.register Privacy do
+ActiveAdmin.register Agreement do
 
   permit_params :content
+
 
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

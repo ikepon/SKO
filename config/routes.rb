@@ -21,6 +21,7 @@ Sko::Application.routes.draw do
   get "lessons/home"
   get "lessons/show"
   get "lessons/new_lesson"
+  get "lessons/ranking"
   get "lessons/category"
   get "lessons/agreement"
   get "lessons/privacy"

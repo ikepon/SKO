@@ -64,6 +64,7 @@ rails g active_admin:resource Learning
 rails g active_admin:resource Lesson
 rails g active_admin:resource Message
 rails g active_admin:resource Privacy
+rails g active_admin:resource Agreement
 rails g active_admin:resource User
 
 ・管理画面上で登録・変更できるカラムを定義する
@@ -73,3 +74,7 @@ rails g active_admin:resource User
 
 ・お問合わせにカラムを追加
   rails g migration AddAttributionToContact inquiry:integer
+
+・モデル内のデータ型変更【stringをtext】
+  rails g migration ChangeStringtotextToLesson
+  rails g migration ChangeStringtotextToModel

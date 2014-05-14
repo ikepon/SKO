@@ -15,18 +15,18 @@
         <div class="sidebar">
           <h4>人気レッスン</h4>
           <ul>
-            <% if @popular_lessons_all.present? %>
+            <% if @popular_lessons.present? %>
               <% @count = 0 %>
-              <% @popular_lessons_all.each do |lesson_id| %>
+              <% @popular_lessons.each do |lesson| %>
                 <% if @count < 5 %>
-                  <li class="sidebar-indent"><a href="/popular/1">【中学<%= lesson_id %>年生】</a></li>
+                  <li class="sidebar-indent"><%= link_to '【中学'+lesson.grade.to_s+'年生】'+lesson.unit_name+'：'+lesson.unit_item_name , '/grade'+lesson.grade.to_s+'/'+lesson.unit_item_name %></li>
                   <% @count += 1 %>
                 <% end %>
               <% end %>
             <% else %>
               <li>準備中です</li>
             <% end %>
-            <li class="text-right"><a href="/infos">人気レッスン一覧</a></li>
+            <li class="text-right"><%= link_to '人気レッスン一覧', lessons_ranking_path %></li>
           </ul>
         </div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513092426) do
+ActiveRecord::Schema.define(version: 20140514024832) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140513092426) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "agreements", force: true do |t|
-    t.string   "content",    default: "", null: false
+    t.text     "content",    limit: 255, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,15 +62,15 @@ ActiveRecord::Schema.define(version: 20140513092426) do
   end
 
   create_table "faq_categories", force: true do |t|
-    t.string   "faq_category_name",    default: "", null: false
-    t.string   "faq_category_summary", default: "", null: false
+    t.string   "faq_category_name",                default: "", null: false
+    t.text     "faq_category_summary", limit: 255, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "faqs", force: true do |t|
-    t.string   "question",        default: "", null: false
-    t.string   "answer",          default: "", null: false
+    t.text     "question",        limit: 255, default: "", null: false
+    t.string   "answer",                      default: "", null: false
     t.integer  "faq_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(version: 20140513092426) do
   create_table "learnings", force: true do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
-    t.boolean  "status",        default: false, null: false
-    t.string   "memo",          default: "",    null: false
-    t.boolean  "check",         default: false, null: false
-    t.datetime "complete_date",                 null: false
+    t.boolean  "status",                    default: false, null: false
+    t.text     "memo",          limit: 255, default: "",    null: false
+    t.boolean  "check",                     default: false, null: false
+    t.datetime "complete_date",                             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,22 +101,22 @@ ActiveRecord::Schema.define(version: 20140513092426) do
   add_index "learnings", ["user_id"], name: "index_learnings_on_user_id"
 
   create_table "lessons", force: true do |t|
-    t.string   "title",             null: false
-    t.string   "summary",           null: false
+    t.string   "title",                         null: false
+    t.text     "summary",           limit: 255, null: false
     t.string   "movie"
     t.time     "time"
-    t.integer  "grade",             null: false
-    t.string   "category_name",     null: false
-    t.string   "category_summary",  null: false
-    t.string   "unit_name",         null: false
-    t.string   "unit_summary",      null: false
-    t.string   "unit_item_name",    null: false
-    t.string   "unit_item_summary", null: false
-    t.string   "explanation",       null: false
-    t.string   "exercise",          null: false
-    t.string   "exercise_answer",   null: false
-    t.string   "point",             null: false
-    t.integer  "number",            null: false
+    t.integer  "grade",                         null: false
+    t.string   "category_name",                 null: false
+    t.text     "category_summary",  limit: 255, null: false
+    t.string   "unit_name",                     null: false
+    t.text     "unit_summary",      limit: 255, null: false
+    t.string   "unit_item_name",                null: false
+    t.text     "unit_item_summary", limit: 255, null: false
+    t.text     "explanation",       limit: 255, null: false
+    t.text     "exercise",          limit: 255, null: false
+    t.text     "exercise_answer",   limit: 255, null: false
+    t.text     "point",             limit: 255, null: false
+    t.integer  "number",                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20140513092426) do
   create_table "messages", force: true do |t|
     t.integer  "friend_id"
     t.integer  "user_id"
-    t.string   "message_content", default: "", null: false
+    t.text     "message_content", limit: 255, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 20140513092426) do
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
   create_table "privacies", force: true do |t|
-    t.string   "content",    default: "", null: false
+    t.text     "content",    limit: 255, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
