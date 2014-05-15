@@ -19,8 +19,16 @@ class MypageController < ApplicationController
     @user_id = '1'
     # @user_id = current_user.id
 
-    @learning_days = Learning.find_by_sql(SELECT DATE_FORMAT(updated_at, '%Y-%m-%d') as updated_at, COUNT(*) as count FROM learnings GROUP BY DATE_FORMAT(updated_at, '%Y%m%d'))
-    # @learning_days = Learning.find_by_sql(select cast(updated_at as date) as day,count(*) from learnings group by day order by day asc)
+    @chart_data_day = Learning.where(user_id: @user_id).group('date(complete_date)').count
+    @columun = 0
+    @accumulation = 0
+    @chart_data_accumulation = @chart_data_day.to_a
+    @chart_data_day.each do |day|
+      @chart_data_accumulation[@columun][0] = day[0]
+      @chart_data_accumulation[@columun][1] = day[1] + @accumulation
+      @accumulation = @chart_data_accumulation[@columun][1]
+      @columun += 1
+    end
 
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)

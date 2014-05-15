@@ -54,6 +54,9 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 # 管理画面　csvデータ アップロード
 gem 'active_admin_importable'
 
+# グラフ描画ライブラリ
+gem 'chartkick'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

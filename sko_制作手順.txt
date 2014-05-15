@@ -1,3 +1,8 @@
+git add --all
+git commit -m "14051401";
+git push -u origin master;
+
+
 ●プロジェクトの作成
   rails new sko
 
@@ -84,3 +89,13 @@ rails g active_admin:resource User
 
 ・friendsコントローラー作成
   rails g controller friends index show search
+
+●参考サイト
+Rails4 Deviseカスタマイズ：登録時に規約に同意を追加 - Qiita
+http://qiita.com/azusanakano/items/f46f713cad136bbd2254
+
+
+
+●application_controllerの使い方
+コントローラーは「ApplicationController」クラスを継承しており、ApplicationControllerは「app/controllers/application_controller.rb」で定義されています。ApplicationControllerで定義したメソッドは全てのコントローラーで使うことができるので、共通的に定義したいリクエストの前処理などを定義したりすることができます。
+

@@ -8,12 +8,12 @@
                 <div  style="border: 1px solid #ccc; margin-top: 7px;">
                   <div class="tab-content">
                     <div class="tab-pane active" id="days">
-                      <h3>日別勉強時間</h3>
-                      <%= image_tag '640x360.png', :alt => 'Main_Visual', :class => 'img-responsive' %>
+                      <h3>日別学習レッスン数</h3>
+                      <%= line_chart @chart_data_day, height: "300px" %>
                     </div>
                     <div class="tab-pane" id="total">
-                      <h3>累積勉強時間</h3>
-                      <%= image_tag '640x360.png', :alt => 'Main_Visual', :class => 'img-responsive' %>
+                      <h3>累積学習レッスン数</h3>
+                      <%= line_chart @chart_data_accumulation, height: "300px" %>
                     </div>
                   </div>
                   <ul class="nav nav-pills nav-justified">
