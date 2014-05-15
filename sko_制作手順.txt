@@ -78,3 +78,9 @@ rails g active_admin:resource User
 ・モデル内のデータ型変更【stringをtext】
   rails g migration ChangeStringtotextToLesson
   rails g migration ChangeStringtotextToModel
+
+・mypageコントローラー作成
+  rails g controller mypage index memo
+
+・friendsコントローラー作成
+  rails g controller friends index show search

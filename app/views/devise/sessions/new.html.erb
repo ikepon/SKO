@@ -1,4 +1,9 @@
-<h2>ログイン</h2>
+<ul class="nav nav-tabs">
+  <li class="active"><a>ログイン</a></li>
+  <li><%= link_to '新規会員登録', new_user_registration_path %></li>
+  <li><%= link_to 'パスワード再発行', new_user_password_path %></li>
+</ul>
+<p class="top15">ログイン情報を入力してください。</p>
 <div class="col-xs-12">
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
   <div class="form-group">

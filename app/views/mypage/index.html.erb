@@ -1,0 +1,65 @@
+            <ul class="nav nav-tabs">
+              <li class="active"><a>学習状況</a></li>
+              <li><a href="<%= mypage_memo_path %>"><span style="font-size: 12px; line-height: 120%; !important">メモ・チェックレッスン</a></li>
+              <li><a href="<%= friends_path %>">友達<span style="color: red; font-size: 12px">New</span></a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="progress">
+                <div  style="border: 1px solid #ccc; margin-top: 7px;">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="days">
+                      <h3>日別勉強時間</h3>
+                      <%= image_tag '640x360.png', :alt => 'Main_Visual', :class => 'img-responsive' %>
+                    </div>
+                    <div class="tab-pane" id="total">
+                      <h3>累積勉強時間</h3>
+                      <%= image_tag '640x360.png', :alt => 'Main_Visual', :class => 'img-responsive' %>
+                    </div>
+                  </div>
+                  <ul class="nav nav-pills nav-justified">
+                    <li class="active"><a href="#days" data-toggle="tab">日別学習時間</a></li>
+                    <li><a href="#total" data-toggle="tab">累積学習時間</a></li>
+                  </ul>
+                </div>
+                <div class="col-xs-12">
+                  <h3 class="tangen">学習中レッスン一覧</h3>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>正の数・負の数</li>
+                    <li>正負の数の加法、減法</li>
+                    <li>正負の数の乗法、除法、累乗</li>
+                    <li>四則計算、分配法則</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>文字式の表し方</li>
+                    <li>代入・式の値</li>
+                    <li>文字式の計算</li>
+                  </ul>
+                </div>
+                <div class="col-xs-12">
+                  <h3 class="tangen">完了レッスン一覧</h3>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>関数</li>
+                    <li>比例</li>
+                    <li>反比例</li>
+                    <li>座標</li>
+                    <li>比例グラフ</li>
+                    <li>反比例グラフ</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>図形（用語と記号）</li>
+                    <li>図形の移動</li>
+                    <li>作図</li>
+                    <li>円とおうぎ形</li>
+                    <li>おうぎ形の弧、面積</li>
+                  </ul>
+                </div>
+              </div>
+            </div>

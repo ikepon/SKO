@@ -1,4 +1,9 @@
-<h2>パスワード再発行</h2>
+<ul class="nav nav-tabs">
+  <li><%= link_to 'ログイン', new_user_session_path %></li>
+  <li><%= link_to '新規会員登録', new_user_registration_path %></li>
+  <li class="active"><a>パスワード再発行</a></li>
+</ul>
+<p class="top15">登録したメールアドレスを入力してください。</p>
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
 

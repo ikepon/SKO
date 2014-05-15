@@ -35,6 +35,18 @@ a:hover {
   color: indianred;
 }
 
+.top3 {
+  margin-top: 3px;
+}
+
+.top15 {
+  margin-top: 15px;
+}
+
+.top20 {
+  margin-top: 20px;
+}
+
 .bottom15 {
   margin-bottom: 15px;
 }

@@ -1,4 +1,11 @@
 Sko::Application.routes.draw do
+  get "friends" =>  "friends#index"
+  get "friends/index"
+  get "friends/show"
+  get "friends/search"
+  get "mypage" => "mypage#index"
+  get "mypage/index"
+  get "mypage/memo"
   get "faq/index"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
