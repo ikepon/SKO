@@ -21,44 +21,78 @@
                     <li><a href="#total" data-toggle="tab">累積学習時間</a></li>
                   </ul>
                 </div>
+
+                      <% comp = "" %>
+                      <% incomp = "" %>
+
+                      <% @l_unit_names1.each do |l| %>
+                        <% @unit_count1.each do |c| %>
+                          <% if c[0] == l[0] %>
+                            <% if c[1] <= l[1] %>
+                              <% @lessons1.each do |ls| %>
+                                <% if ls.unit_item_name == l[0] %>
+                                  <% comp += "<li><a href='/grade#{ls.grade}/#{l[0]}'>【中学#{ls.grade}年生】#{ls.unit_name}：#{l[0]}</a></li>" %>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                              <% @lessons1.each do |ls| %>
+                                <% if ls.unit_item_name == l[0] %>
+                                  <% incomp += "<li><a href='/grade#{ls.grade}/#{l[0]}'>【中学#{ls.grade}年生】#{ls.unit_name}：#{l[0]}</a></li>" %>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                      <% @l_unit_names2.each do |l| %>
+                        <% @unit_count2.each do |c| %>
+                          <% if c[0] == l[0] %>
+                            <% if c[1] <= l[1] %>
+                              <% @lessons2.each do |ls| %>
+                                <% if ls.unit_item_name == l[0] %>
+                                  <% comp += "<li><a href='/grade#{ls.grade}/#{l[0]}'>【中学#{ls.grade}年生】#{ls.unit_name}：#{l[0]}</a></li>" %>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                              <% @lessons2.each do |ls| %>
+                                <% if ls.unit_item_name == l[0] %>
+                                  <% incomp += "<li><a href='/grade#{ls.grade}/#{l[0]}'>【中学#{ls.grade}年生】#{ls.unit_name}：#{l[0]}</a></li>" %>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                      <% @l_unit_names3.each do |l| %>
+                        <% @unit_count3.each do |c| %>
+                          <% if c[0] == l[0] %>
+                            <% if c[1] <= l[1] %>
+                              <% @lessons3.each do |ls| %>
+                                <% if ls.unit_item_name == l[0] %>
+                                  <% comp += "<li><a href='/grade#{ls.grade}/#{l[0]}'>【中学#{ls.grade}年生】#{ls.unit_name}：#{l[0]}</a></li>" %>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                              <% @lessons3.each do |ls| %>
+                                <% if ls.unit_item_name == l[0] %>
+                                  <% incomp += "<li><a href='/grade#{ls.grade}/#{l[0]}'>【中学#{ls.grade}年生】#{ls.unit_name}：#{l[0]}</a></li>" %>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+
                 <div class="col-xs-12">
                   <h3 class="tangen">学習中レッスン一覧</h3>
-                </div>
-                <div class="col-md-6">
                   <ul>
-                    <li>正の数・負の数</li>
-                    <li>正負の数の加法、減法</li>
-                    <li>正負の数の乗法、除法、累乗</li>
-                    <li>四則計算、分配法則</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul>
-                    <li>文字式の表し方</li>
-                    <li>代入・式の値</li>
-                    <li>文字式の計算</li>
+                    <%= raw(incomp) %>
                   </ul>
                 </div>
                 <div class="col-xs-12">
                   <h3 class="tangen">完了レッスン一覧</h3>
-                </div>
-                <div class="col-md-6">
                   <ul>
-                    <li>関数</li>
-                    <li>比例</li>
-                    <li>反比例</li>
-                    <li>座標</li>
-                    <li>比例グラフ</li>
-                    <li>反比例グラフ</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul>
-                    <li>図形（用語と記号）</li>
-                    <li>図形の移動</li>
-                    <li>作図</li>
-                    <li>円とおうぎ形</li>
-                    <li>おうぎ形の弧、面積</li>
+                    <%= raw(comp) %>
                   </ul>
                 </div>
               </div>

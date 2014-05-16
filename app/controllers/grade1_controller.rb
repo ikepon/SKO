@@ -95,10 +95,10 @@ class Grade1Controller < ApplicationController
     add_breadcrumb @grade_unit_item_name,'/grade1/'+@grade_unit_item_name
     add_breadcrumb @lesson
 
-    @lesson_info = Lesson.where(:title => @lesson).select('id, title, summary, time, explanation, exercise, exercise_answer, point')
+    @lesson_info = Lesson.where(:id => @lesson).select('id, title, summary, time, explanation, exercise, exercise_answer, point')
 
-    @title = '中学1年生数学の' + @lesson
-    @description = '中学1年生で勉強する数学の単元「' + @grade_unit_item_name + '」の「'+ @lesson +'」内容です。'
+    @title = '中学1年生数学の' + @lesson_info[0].title
+    @description = '中学1年生で勉強する数学の単元「' + @grade_unit_item_name + '」の「' + @lesson_info[0].title + '」内容です。'
 
     #sidebar
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)

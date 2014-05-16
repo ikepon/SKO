@@ -150,6 +150,12 @@
       $(this).toggleClass("active");
     });
   });
+  $(function(){
+    $("#lesson_memo dt").on("click", function() {
+      $(this).next().slideToggle("fast");
+      $(this).toggleClass("active");
+    });
+  });
 
 </script>
 

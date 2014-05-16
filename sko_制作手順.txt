@@ -1,6 +1,6 @@
 git add --all
-git commit -m "14051401";
-git push -u origin master;
+git commit -m "14051401"
+git push -u origin master
 
 
 ●プロジェクトの作成
@@ -97,5 +97,11 @@ http://qiita.com/azusanakano/items/f46f713cad136bbd2254
 
 
 ●application_controllerの使い方
-コントローラーは「ApplicationController」クラスを継承しており、ApplicationControllerは「app/controllers/application_controller.rb」で定義されています。ApplicationControllerで定義したメソッドは全てのコントローラーで使うことができるので、共通的に定義したいリクエストの前処理などを定義したりすることができます。
+  コントローラーは「ApplicationController」クラスを継承しており、ApplicationControllerは「app/controllers/application_controller.rb」で定義されています。ApplicationControllerで定義したメソッドは全てのコントローラーで使うことができるので、共通的に定義したいリクエストの前処理などを定義したりすることができます。
+
+  applicationコントローラは通常すべての controller のスーパークラスとなっているので、application コントローラ内で定義された定数は、アプリケーション内のすべてのコントローラ内で参照できます。
+
+●グラフ化参考サイト
+Rails用の美麗JavaScriptグラフライブラリ「Chartkick」
+http://www.softantenna.com/wp/software/chartkick/
 
