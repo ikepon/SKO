@@ -24,29 +24,6 @@ class LessonsController < ApplicationController
     @search = Lesson.search(params[:q])
     @search_lessons = @search.result.page(params[:page]).per(10)
 
-    #sidebar
-    @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    @popular_lessons = Lesson.find(popular_lessons_ids)
-
-    @users_total = User.all.count()
-    @users_grade = User.group('grade').count('grade')
-
-    @complete_lessons = Learning.where(:status => true).count()
-    @check_lessons = Learning.where(:check => true).count()
-    if @users_total != 0
-      @average_comp = @complete_lessons / @users_total
-      @average_check = @check_lessons / @users_total
-    else
-      @average_comp = 0
-      @average_check = 0
-    end
-
-    #footer
-    @footer_grade1 = Lesson.where(:grade => '1').select('unit_name').group('unit_name')
-    @footer_grade2 = Lesson.where(:grade => '2').select('unit_name').group('unit_name')
-    @footer_grade3 = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
-    @footer_categories = Lesson.select('category_name').group('category_name')
   end
 
   def home
@@ -58,29 +35,6 @@ class LessonsController < ApplicationController
     @grade3_units = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
     @grade3_units_all = Lesson.where(:grade => '3').select('unit_name, unit_item_name').group('unit_item_name')
 
-    #sidebar
-    @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    @popular_lessons = Lesson.find(popular_lessons_ids)
-
-    @users_total = User.all.count()
-    @users_grade = User.group('grade').count('grade')
-
-    @complete_lessons = Learning.where(:status => true).count()
-    @check_lessons = Learning.where(:check => true).count()
-    if @users_total != 0
-      @average_comp = @complete_lessons / @users_total
-      @average_check = @check_lessons / @users_total
-    else
-      @average_comp = 0
-      @average_check = 0
-    end
-
-    #footer
-    @footer_grade1 = Lesson.where(:grade => '1').select('unit_name').group('unit_name')
-    @footer_grade2 = Lesson.where(:grade => '2').select('unit_name').group('unit_name')
-    @footer_grade3 = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
-    @footer_categories = Lesson.select('category_name').group('category_name')
   end
 
   def show
@@ -97,29 +51,6 @@ class LessonsController < ApplicationController
 
     @new_lessons_main = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC')
 
-    #sidebar
-    @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    @popular_lessons = Lesson.find(popular_lessons_ids)
-
-    @users_total = User.all.count()
-    @users_grade = User.group('grade').count('grade')
-
-    @complete_lessons = Learning.where(:status => true).count()
-    @check_lessons = Learning.where(:check => true).count()
-    if @users_total != 0
-      @average_comp = @complete_lessons / @users_total
-      @average_check = @check_lessons / @users_total
-    else
-      @average_comp = 0
-      @average_check = 0
-    end
-
-    #footer
-    @footer_grade1 = Lesson.where(:grade => '1').select('unit_name').group('unit_name')
-    @footer_grade2 = Lesson.where(:grade => '2').select('unit_name').group('unit_name')
-    @footer_grade3 = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
-    @footer_categories = Lesson.select('category_name').group('category_name')
   end
 
   def ranking
@@ -130,30 +61,6 @@ class LessonsController < ApplicationController
 
     popular_lessons_id = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
     @popular_lessons_main = Lesson.find(popular_lessons_id)
-
-    #sidebar
-    @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    @popular_lessons = Lesson.find(popular_lessons_ids)
-
-    @users_total = User.all.count()
-    @users_grade = User.group('grade').count('grade')
-
-    @complete_lessons = Learning.where(:status => true).count()
-    @check_lessons = Learning.where(:check => true).count()
-    if @users_total != 0
-      @average_comp = @complete_lessons / @users_total
-      @average_check = @check_lessons / @users_total
-    else
-      @average_comp = 0
-      @average_check = 0
-    end
-
-    #footer
-    @footer_grade1 = Lesson.where(:grade => '1').select('unit_name').group('unit_name')
-    @footer_grade2 = Lesson.where(:grade => '2').select('unit_name').group('unit_name')
-    @footer_grade3 = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
-    @footer_categories = Lesson.select('category_name').group('category_name')
 
   end
 
@@ -167,29 +74,6 @@ class LessonsController < ApplicationController
     @categories = Lesson.select('category_name').group('category_name')
     @category_lessons_all = Lesson.select('grade, category_name, unit_name, unit_item_name').group('unit_item_name')
 
-    #sidebar
-    @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    @popular_lessons = Lesson.find(popular_lessons_ids)
-
-    @users_total = User.all.count()
-    @users_grade = User.group('grade').count('grade')
-
-    @complete_lessons = Learning.where(:status => true).count()
-    @check_lessons = Learning.where(:check => true).count()
-    if @users_total != 0
-      @average_comp = @complete_lessons / @users_total
-      @average_check = @check_lessons / @users_total
-    else
-      @average_comp = 0
-      @average_check = 0
-    end
-
-    #footer
-    @footer_grade1 = Lesson.where(:grade => '1').select('unit_name').group('unit_name')
-    @footer_grade2 = Lesson.where(:grade => '2').select('unit_name').group('unit_name')
-    @footer_grade3 = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
-    @footer_categories = Lesson.select('category_name').group('category_name')
   end
 
   def resource_name
@@ -213,30 +97,6 @@ class LessonsController < ApplicationController
 
     @rule = Agreement.all(:order => "created_at DESC", :limit => 1)
 
-    #sidebar
-    @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    @popular_lessons = Lesson.find(popular_lessons_ids)
-
-    @users_total = User.all.count()
-    @users_grade = User.group('grade').count('grade')
-
-    @complete_lessons = Learning.where(:status => true).count()
-    @check_lessons = Learning.where(:check => true).count()
-    if @users_total != 0
-      @average_comp = @complete_lessons / @users_total
-      @average_check = @check_lessons / @users_total
-    else
-      @average_comp = 0
-      @average_check = 0
-    end
-
-    #footer
-    @footer_grade1 = Lesson.where(:grade => '1').select('unit_name').group('unit_name')
-    @footer_grade2 = Lesson.where(:grade => '2').select('unit_name').group('unit_name')
-    @footer_grade3 = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
-    @footer_categories = Lesson.select('category_name').group('category_name')
-
     render 'rule'
 
   end
@@ -249,30 +109,6 @@ class LessonsController < ApplicationController
     @description = '当サイトで取得した個人情報の取り扱いに関するページになります。'
 
     @rule = Privacy.all(:order => "created_at DESC", :limit => 1)
-
-    #sidebar
-    @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
-    popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
-    @popular_lessons = Lesson.find(popular_lessons_ids)
-
-    @users_total = User.all.count()
-    @users_grade = User.group('grade').count('grade')
-
-    @complete_lessons = Learning.where(:status => true).count()
-    @check_lessons = Learning.where(:check => true).count()
-    if @users_total != 0
-      @average_comp = @complete_lessons / @users_total
-      @average_check = @check_lessons / @users_total
-    else
-      @average_comp = 0
-      @average_check = 0
-    end
-
-    #footer
-    @footer_grade1 = Lesson.where(:grade => '1').select('unit_name').group('unit_name')
-    @footer_grade2 = Lesson.where(:grade => '2').select('unit_name').group('unit_name')
-    @footer_grade3 = Lesson.where(:grade => '3').select('unit_name').group('unit_name')
-    @footer_categories = Lesson.select('category_name').group('category_name')
 
     render 'rule'
 
