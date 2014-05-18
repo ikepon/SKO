@@ -43,6 +43,17 @@ class MypageController < ApplicationController
     @l_unit_names3 = Lesson.where(:grade => '3', :id => @learning_ids).group('unit_item_name').count
     @unit_count3 = Lesson.where(:grade => '3').group('unit_item_name').count
 
+    @sum_time = 0
+    @times = Lesson.where(:id => @learning_ids).select('time')
+
+    if @times.present?
+      @times.each do |t|
+        @sum_time += t.time.min * 60 + t.time.sec
+      end
+    end
+
+    @total_time = Time.now.midnight.advance(:seconds => @sum_time).strftime('%T')
+
   end
 
   def memo

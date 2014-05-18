@@ -10,13 +10,13 @@
 
   <div class="form-group">
     <div class="col-sm-6">
-      <%= f.email_field :email, :autofocus => true, :class => 'form-control', :placeholder => 'メールアドレス' %>
+      <%= f.text_field :name, :autofocus => true, :class => 'form-control', :placeholder => 'ユーザーネーム' %>
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-sm-6">
-      <%= f.text_field :name, :autofocus => true, :class => 'form-control', :placeholder => 'ユーザーネーム' %>
+      <%= f.email_field :email, :autofocus => true, :class => 'form-control', :placeholder => 'メールアドレス' %>
     </div>
   </div>
 
@@ -60,7 +60,7 @@
 
   <div class="form-group">
     <div class="col-xs-3">
-      <%= f.label :prefecture, '都道府県' %>
+      <%= f.label :prefecture, '都道府県：' %>
     </div>
     <div class="col-xs-2">
     <%= f.select :prefecture, [["北海道",'1'],
@@ -115,7 +115,7 @@
 
   <div class="form-group">
     <div class="col-xs-3">
-      <%= f.label :avatar, 'ユーザー画像' %>
+      <%= f.label :avatar, 'ユーザー画像：' %>
     </div>
     <div class="col-xs-6">
       <%= f.file_field :avatar, :class => 'form-control' %>

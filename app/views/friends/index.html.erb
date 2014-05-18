@@ -163,6 +163,32 @@
                       </div>
                     </div>
                   </form>
+<%= form_for @search_form, url: friends_path, html: {method: :get} do |f| %>
+  <div class="form-group">
+    <div class="col-xs-3">
+      <%= f.search_field :q %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-xs-3">
+      <%= f.label :sex, '　性別：　' %>
+    </div>
+    <div class="col-xs-9">
+      <label><%= f.radio_button :sex, '男性' %>男性</label>　
+      <label><%= f.radio_button :sex, '女性' %>女性</label>
+    </div>
+  </div>
+  <%= f.submit '検索' %>
+<% end %>
+                  <div class="row">
+                  <% if @search_users.present? %>
+                    <% @search_users.each do |s| %>
+                      <div class="col-md-2 col-xs-3">
+                        <%= image_tag s.avatar.url(:thumb) %><br><%= s.name %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                  </div>
                 </div>
               </div>
             </div>

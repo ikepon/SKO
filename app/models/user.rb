@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :learnings
   has_many :messages
 
-  validates :name, :avatar, :sex, :grade, :prefecture, presence: true
+  # validates :name, :avatar, :sex, :grade, :prefecture, presence: true
+
+  scope :named, ->(q) { where 'name like ?', "%#{q}%" }
+  scope :sexed, ->(sex) { where 'sex like ?', "%#{sex}%" }
 
 end

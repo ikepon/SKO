@@ -1,4 +1,13 @@
 ja:
+  activerecord:
+    attributes:
+      user:
+        name: "お名前"
+        sex: "性別"
+        grede: "学年"
+        prefecture: "都道府県"
+        avatar: "ユーザ画像"
+        mailmag: "学習レポート"
   date:
     abbr_day_names:
     - 日
