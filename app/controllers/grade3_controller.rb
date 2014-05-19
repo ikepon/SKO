@@ -6,6 +6,7 @@ class Grade3Controller < ApplicationController
   protect_from_forgery
 
   before_filter :set_search
+  before_action :configure_permitted_params, only: [:show]
 
   def set_search
   @search = Lesson.search(params[:q])
@@ -53,5 +54,24 @@ class Grade3Controller < ApplicationController
     @title = '中学3年生数学の' + @lesson_info[0].title
     @description = '中学3年生で勉強する数学の単元「' + @grade_unit_item_name + '」の「' + @lesson_info[0].title + '」内容です。'
 
+    @user_id = '1'
+    # @user_id = current_user.id
+
+    if @user_id.present?
+      @learning = Learning.where(:user_id => @user_id, :lesson_id => @lesson).first_or_create do |l|
+        l.user_id = @user_id
+        l.lesson_id = @lesson
+        l.status = 0
+        l.check = 0
+        l.complete_date = Time.now
+      end
+    end
   end
+
+  protected
+
+  def configure_permitted_params
+    params.permit(:user_id, :lesson_id, :status, :check, :complete_date)
+  end
+
 end

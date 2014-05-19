@@ -57,6 +57,8 @@ rails g migration RenameBooleanToUser MailmagBoolean
 ・privacy
   rails g model privacy content:string
 
+●Userモデルの必須設定などの変更
+
 ●active_admin のインストールから設定まで
 http://ameblo.jp/hbnizm31/entrylist-2.html
 
@@ -105,3 +107,8 @@ http://qiita.com/azusanakano/items/f46f713cad136bbd2254
 Rails用の美麗JavaScriptグラフライブラリ「Chartkick」
 http://www.softantenna.com/wp/software/chartkick/
 
+●Rails4 ユーザフォロー、アンフォローのアプリ作成
+http://japanese.railstutorial.org/chapters/rails-flavored-ruby?version=4.0
+
+●modelのfindとなければ新規作成の書き方
+http://techracho.bpsinc.jp/morimorihoge/2012_10_18/6260

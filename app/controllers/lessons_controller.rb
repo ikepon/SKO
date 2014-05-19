@@ -2,8 +2,6 @@
 
 class LessonsController < ApplicationController
 
-  before_filter :authenticate_user!
-
   add_breadcrumb 'Home', '/'
 
   before_filter :authenticate_user!, :except => [:index, :home, :show, :new_lesson,:ranking, :category, :agreement, :privacy]

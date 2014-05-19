@@ -7,6 +7,7 @@ class FriendsController < ApplicationController
   protect_from_forgery
 
   before_filter :set_search
+  # before_filter :authenticate_user!, :except => [:index, :home, :show, :new_lesson,:ranking, :category, :agreement, :privacy]
 
   def set_search
   @search = Lesson.search(params[:q])
@@ -19,14 +20,14 @@ class FriendsController < ApplicationController
     @user_id = '1'
     # @user_id = current_user.id
 
-    @users = User.where.not(:id => @user_id)
+    @search_users = User.where.not(:id => @user_id)
 
     @search_form = SearchForm.new params[:search_form]
     if @search_form.q.present?
-      @search_users = @users.named @search_form.q
+      @search_users = @search_users.named @search_form.q
     end
     if @search_form.sex.present?
-      @search_users = @users.sexed @search_form.sex
+      @search_users = @search_users.sexed @search_form.sex
     end
   end
 

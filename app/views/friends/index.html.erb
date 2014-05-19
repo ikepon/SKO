@@ -180,7 +180,7 @@
   </div>
   <%= f.submit '検索' %>
 <% end %>
-                  <div class="row">
+                  <div id="search-result" class="row">
                   <% if @search_users.present? %>
                     <% @search_users.each do |s| %>
                       <div class="col-md-2 col-xs-3">

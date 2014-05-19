@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514024832) do
+ActiveRecord::Schema.define(version: 20140519140642) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20140514024832) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",                   default: "",    null: false
+    t.string   "name",                   default: ""
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
@@ -150,11 +150,11 @@ ActiveRecord::Schema.define(version: 20140514024832) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "user_auth",              default: true,  null: false
-    t.string   "sex",                                    null: false
-    t.integer  "grade",                                  null: false
-    t.string   "prefecture",                             null: false
-    t.boolean  "mailmag",                default: false, null: false
+    t.boolean  "user_auth",              default: true
+    t.string   "sex"
+    t.integer  "grade"
+    t.string   "prefecture"
+    t.boolean  "mailmag",                default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar_file_name"
