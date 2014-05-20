@@ -57,7 +57,7 @@
               <h3>要点・まとめ</h3>
                 <p><%= raw(lesson.point) %></p>
               <h3>学習メモ</h3>
-              <%= form_for @learning, :url => {:controller => :grade1, :action => :create} do |f| %>
+              <%= form_for @learning, url: learnings_update_path do |f| %>
                 <fieldset>
                   <div class="form-group">
                     <label for="exampleInput">レッスン内容などについて気になることを記入してください。</label>

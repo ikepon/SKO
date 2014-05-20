@@ -1,11 +1,13 @@
 Sko::Application.routes.draw do
+  post "learnings/create"
+  post "learnings/update"
+  get "learnings" => "learnings#index"
+  get "learnings/index"
+  get "learnings/memo"
   get "friends" =>  "friends#index"
   get "friends/index"
   get "friends/show"
   get "friends/search"
-  get "mypage" => "mypage#index"
-  get "mypage/index"
-  get "mypage/memo"
   get "faq/index"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

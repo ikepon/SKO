@@ -66,14 +66,14 @@ class Grade1Controller < ApplicationController
     end
   end
 
-  def create
-    @learning = Learning.new(pamams[:learning])
+  # def create
+  #   @learning = Learning.new(pamams[:learning])
 
-    if @learning.update_attributes(:memo, @learning.memo)
-      btn_status = '完了済み'
-    else
-      btn_status = 'エラー'
-    end
-  render 'grade1/index'
-  end
+  #   if @learning.update_attributes(:memo, @learning.memo)
+  #     btn_status = '完了済み'
+  #   else
+  #     btn_status = 'エラー'
+  #   end
+  # render 'grade1/index'
+  # end
 end

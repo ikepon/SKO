@@ -58,6 +58,7 @@ rails g migration RenameBooleanToUser MailmagBoolean
   rails g model privacy content:string
 
 ●Userモデルの必須設定などの変更
+  rails g migration ChangeNameetcOptionToUser
 
 ●active_admin のインストールから設定まで
 http://ameblo.jp/hbnizm31/entrylist-2.html
@@ -112,3 +113,6 @@ http://japanese.railstutorial.org/chapters/rails-flavored-ruby?version=4.0
 
 ●modelのfindとなければ新規作成の書き方
 http://techracho.bpsinc.jp/morimorihoge/2012_10_18/6260
+
+●関連付けられたモデルも抽出条件に加える
+http://hai3.net/blog/2013/01/28/rails3-joins-arel-table/
