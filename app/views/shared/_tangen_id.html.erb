@@ -28,9 +28,15 @@
                 </div>
                 <div class="col-xs-4 lesson_movie">
                   <% if @learning.present? && @learning.status == true %>
-                    <button type="button" class="btn btn-default" onclick="location.href='/'" style="width:80px;">完了済み</button>
+                    <%= form_for @learning, remote: true do |f| %>
+                      <%= f.hidden_field :status, :value => 'false' %>
+                      <%= f.submit '完了済み', :class => "btn btn-default", :style => 'width: 80px;' %>
+                    <% end %>
                   <% else %>
-                    <button type="button" class="btn btn-default" onclick="location.href='/'" style="width:80px;">完了</button>
+                    <%= form_for @learning, remote: true do |f| %>
+                      <%= f.hidden_field :status, :value => 'true' %>
+                      <%= f.submit '完了', :class => "btn btn-default", :style => 'width: 80px;' %>
+                    <% end %>
                   <% end %>
                 </div>
                 <div class="col-xs-4 lesson_next">
@@ -57,7 +63,7 @@
               <h3>要点・まとめ</h3>
                 <p><%= raw(lesson.point) %></p>
               <h3>学習メモ</h3>
-              <%= form_for @learning do |f| %>
+              <%= form_for @learning, remote: true do |f| %>
                 <fieldset>
                   <div class="form-group">
                     <label for="exampleInput">レッスン内容などについて気になることを記入してください。</label>

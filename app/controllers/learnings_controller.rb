@@ -68,7 +68,7 @@ class LearningsController < ApplicationController
   end
 
   def create
-      @learning = Learning.new(Learning_params)
+      @learning = Learning.new(learning_params)
       if @learning.save
       redirect_to :back
     else
