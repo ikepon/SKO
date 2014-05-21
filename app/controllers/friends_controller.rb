@@ -7,7 +7,7 @@ class FriendsController < ApplicationController
   protect_from_forgery
 
   before_filter :set_search
-  # before_filter :authenticate_user!, :except => [:index, :home, :show, :new_lesson,:ranking, :category, :agreement, :privacy]
+  before_filter :authenticate_user!
 
   def set_search
   @search = Lesson.search(params[:q])
@@ -17,8 +17,7 @@ class FriendsController < ApplicationController
 
     add_breadcrumb '友達'
 
-    @user_id = '1'
-    # @user_id = current_user.id
+    @user_id = current_user.id
 
     @search_users = User.where.not(:id => @user_id)
 

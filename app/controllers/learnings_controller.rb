@@ -14,8 +14,7 @@ class LearningsController < ApplicationController
 
     add_breadcrumb 'マイページ'
 
-    @user_id = '1'
-    # @user_id = current_user.id
+    @user_id = current_user.id
 
     @chart_data_day = Learning.where(user_id: @user_id).group('date(complete_date)').count
     @columun = 0
@@ -58,8 +57,7 @@ class LearningsController < ApplicationController
 
     add_breadcrumb '学習メモ・チェックレッスン'
 
-    @user_id = '1'
-    # @user_id = current_user.id
+    @user_id = current_user.id
 
     @memos = Learning.where(:user_id => @user_id).select('lesson_id, memo')
 

@@ -8,6 +8,12 @@
         <div class="col-md-4">
           <div class="hidden-xs hidden-sm">
             <% if user_signed_in? %>
+              <ul class="profile">
+                <li><%= image_tag @user_info[0].avatar.url(:thumb) %>　<%= @user_info[0].name %></li>
+                <li>【総学習時間】　　<%= @total_time %></li>
+                <li>【完了レッスン数] 　<%= @learning_count %>レッスン</li>
+                <li class="text-right"><a href="/lessons/new_lesson">新着レッスン一覧</a></li>
+              </ul>
             <% else %>
               <%= form_for(:user, :url => session_path(:user), :html => { :class => 'form-horizontal' }) do |f| %>
                 <div class="form-group">

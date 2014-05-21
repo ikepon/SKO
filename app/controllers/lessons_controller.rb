@@ -84,15 +84,16 @@ class LessonsController < ApplicationController
     @title = '中学1年生数学の' + @lesson_info[0].title
     @description = '中学1年生で勉強する数学の単元「' + @grade_unit_item_name + '」の「' + @lesson_info[0].title + '」内容です。'
 
-    @user_id = '1'
-    # @user_id = current_user.id
+    if user_signed_in?
+      @user_id = current_user.id
 
-    if @user_id.present?
-      @learning = Learning.where(:user_id => @user_id, :lesson_id => @lesson).first_or_create do |l|
-        l.user_id = @user_id
-        l.lesson_id = @lesson
-        l.status = 0
-        l.check = 0
+      if @user_id.present?
+        @learning = Learning.where(:user_id => @user_id, :lesson_id => @lesson).first_or_create do |l|
+          l.user_id = @user_id
+          l.lesson_id = @lesson
+          l.status = 0
+          l.check = 0
+        end
       end
     end
   end

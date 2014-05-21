@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519140642) do
+ActiveRecord::Schema.define(version: 20140521060907) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(version: 20140519140642) do
   create_table "learnings", force: true do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
-    t.boolean  "status",                    default: false, null: false
-    t.text     "memo",          limit: 255, default: "",    null: false
-    t.boolean  "check",                     default: false, null: false
-    t.datetime "complete_date",                             null: false
+    t.boolean  "status",                    default: false
+    t.text     "memo",          limit: 255, default: ""
+    t.boolean  "check",                     default: false
+    t.datetime "complete_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
