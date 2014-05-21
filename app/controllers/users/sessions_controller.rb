@@ -1,7 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
 
-  include ApplicationHelper
-
   before_action :set_search, :configure_permitted_params
 
   def set_search

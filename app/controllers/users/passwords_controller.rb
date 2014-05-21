@@ -1,7 +1,5 @@
 class Users::PasswordsController < Devise::PasswordsController
 
-  include ApplicationHelper
-
   before_filter :set_search
 
   def set_search

@@ -1,58 +1,41 @@
 Sko::Application.routes.draw do
-  # post "learnings/create"
-  # post "learnings/update"
-  # get "learnings" => "learnings#index"
-  # get "learnings/index"
-  # get "learnings/memo"
-  resources "learnings"
-  get "friends" =>  "friends#index"
-  get "friends/index"
-  get "friends/show"
-  get "friends/search"
-  get "faq/index"
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  # get "contact/index"
-  # get "contact/new"
-  # get "contact/create"
-  get 'contact/new' => 'contact#new', :as => 'contact'
-  post 'contact/new' => 'contact#create'
-  get 'contact:notice' => 'contact#index'
-  get "grade3/index"
-  get "grade3/tangen"
-  get "grade3/show"
-  post "grade3/show"
-  get "grade2/index"
-  get "grade2/tangen"
-  get "grade2/show"
-  post "grade2/show"
-  get "grade1/index"
-  get "grade1/tangen"
-  get "grade1/show"
-  post "grade1/show"
-  post 'grade1/create'
-  get "lessons/index"
-  get "lessons/home"
-  get "lessons/show"
-  get "lessons/new_lesson"
-  get "lessons/ranking"
-  get "lessons/category"
-  get "lessons/agreement"
-  get "lessons/privacy"
-  get "lessons", :to => 'lessons#index', :as => 'lessons'
-
   devise_for :users, :controllers => {
     :sessions      => "users/sessions",
     :registrations => "users/registrations",
     :passwords     => "users/passwords"
   }
 
-  match 'grade1/:type' => 'grade1#tangen', via: :get
-  match 'grade1/:type/:lesson' => 'grade1#show', via: :get
-  match 'grade2/:type' => 'grade2#tangen', via: :get
-  match 'grade2/:type/:lesson' => 'grade2#show', via: :get
-  match 'grade3/:type' => 'grade3#tangen', via: :get
-  match 'grade3/:type/:lesson' => 'grade3#show', via: :get
+  get "learnings/memo" => "learnings#memo"
+  resources "learnings"
+
+  get "friends" => "friends#index"
+  get "friends/index"
+  get "friends/show"
+  get "friends/search"
+
+  get "faq/index"
+
+  get 'contact/new' => 'contact#new', :as => 'contact'
+  post 'contact/new' => 'contact#create'
+  get 'contact:notice' => 'contact#index'
+
+  get "lessons/new_lesson"
+  get "lessons/ranking"
+  get "lessons/category"
+  get "lessons", :to => 'lessons#index', :as => 'lessons'
+
+  get "grade3/index" => 'lessons#grade'
+  get "grade2/index" => 'lessons#grade'
+  get "grade1/index" => 'lessons#grade'
+  match 'grade1/:type' => 'lessons#tangen', via: :get
+  match 'grade1/:type/:lesson' => 'lessons#show', via: :get
+  match 'grade2/:type' => 'lessons#tangen', via: :get
+  match 'grade2/:type/:lesson' => 'lessons#show', via: :get
+  match 'grade3/:type' => 'lessons#tangen', via: :get
+  match 'grade3/:type/:lesson' => 'lessons#show', via: :get
 
   get 'agreement' => 'lessons#agreement'
   get 'privacy' => 'lessons#privacy'

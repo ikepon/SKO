@@ -1,3 +1,15 @@
+        <% if user_signed_in? %>
+          <div class="sidebar">
+            <h4>プロフィール</h4>
+            <ul class="profile">
+              <li><%= image_tag @user_info[0].avatar.url(:thumb) %><%= @user_info[0].name %></li>
+              <li>【総学習時間】　　<%= @total_time %></li>
+              <li>【完了レッスン数] 　<%= @learning_count %>レッスン</li>
+              <li class="text-right"><a href="/lessons/new_lesson">新着レッスン一覧</a></li>
+            </ul>
+          </div>
+        <% end %>
+
         <div class="sidebar">
           <h4>新着レッスン</h4>
           <ul>

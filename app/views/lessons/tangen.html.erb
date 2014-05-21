@@ -1,0 +1,24 @@
+          <div class="row">
+            <div class="col-xs-12">
+              <h2><%= @grade_unit_item_name %></h2>
+              <%= image_tag '740x320.png', :alt => 'Main_Visual', :class => 'img-responsive'%>
+            </div>
+            <div class="col-xs-12">
+              <h3 class="tangen">レッスン一覧</h3>
+              <% if @grade_lessons.present? %>
+                <% @grade_lessons.each do |lesson| %>
+                  <h4 class="tangen"><%= link_to lesson.title, @grade_unit_item_name+'/'+lesson.id.to_s %></h4>
+                  <p><%= lesson.summary %></p>
+                  <p><%= link_to raw(lesson.exercise)+'('+lesson.title+')', @grade_unit_item_name+'/'+lesson.id.to_s %></p>
+                <% end %>
+              <% else %>
+                <p>準備中です</p>
+              <% end %>
+              <% if @grade_lessons.present? %>
+                <% @grade_lessons.each do |lesson| %>
+                <% end %>
+              <% else %>
+                <p>準備中です</p>
+              <% end %>
+            </div>
+          </div>

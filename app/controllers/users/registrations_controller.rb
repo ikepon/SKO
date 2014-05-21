@@ -1,7 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-  include ApplicationHelper
-
   before_action :set_search
   before_action :configure_permitted_params, only: [:create]
 

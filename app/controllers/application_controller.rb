@@ -29,6 +29,26 @@ class ApplicationController < ActionController::Base
       @average_comp = 0
       @average_check = 0
     end
+
+    if user_signed_in?
+      @user_id = current_user.id
+
+      @user_info = User.where(:id => @user_id)
+
+      @learning_ids = Learning.where("user_id = ? and status = ?", @user_id, true).group('lesson_id').count('lesson_id').keys
+      @learning_count = @learning_ids.count
+
+      @sum_time = 0
+      @times = Lesson.where(:id => @learning_ids).select('time')
+
+      if @times.present?
+        @times.each do |t|
+          @sum_time += t.time.min * 60 + t.time.sec
+        end
+      end
+      @total_time = Time.now.midnight.advance(:seconds => @sum_time).strftime('%T')
+    end
+
   end
 
   def footer

@@ -425,6 +425,10 @@ dl dd {
   color: #777777;
 }
 
+ul.profile li {
+  margin-top: 7px;
+}
+
 
 
 .lesson_status {

@@ -4,7 +4,7 @@ class LearningsController < ApplicationController
   protect_from_forgery
 
   before_filter :set_search
-  # before_filter :authenticate_user!, :except => [:index, :home, :show, :new_lesson,:ranking, :category, :agreement, :privacy]
+  before_filter :authenticate_user!
 
   def set_search
   @search = Lesson.search(params[:q])
