@@ -60,6 +60,12 @@ rails g migration RenameBooleanToUser MailmagBoolean
 ●Userモデルの必須設定などの変更
   rails g migration ChangeNameetcOptionToUser
 
+●learningモデルの必須設定解除
+  rails g migration ChangeCompletedateetcOptionToLearning
+
+●friendモデルの必須設定解除
+  rails g migration ChangestatusOptionToFriend
+
 ●active_admin のインストールから設定まで
 http://ameblo.jp/hbnizm31/entrylist-2.html
 

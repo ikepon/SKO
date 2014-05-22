@@ -1,2 +1,89 @@
-<h1>Friends#show</h1>
-<p>Find me in app/views/friends/show.html.erb</p>
+            <ul class="nav nav-tabs">
+              <li><a href="<%= learnings_path %>">学習状況</a></li>
+              <li><a href="<%= learnings_memo_path %>"><span style="font-size: 12px; line-height: 120%; !important">メモ・チェックレッスン</a></li>
+              <li class="active"><a>友達<span style="color: red; font-size: 12px">New</span></a></li>
+            </ul>
+            <div class="row" style="margin-top: 15px;">
+              <div class="col-xs-4 col-md-3" style="padding-left: 20px;">
+                <%= image_tag @friend_info[0].avatar.url(:thumb) %>
+                  <% if @relation.present? && @relation.status.nil? %>
+                    <%= form_for @relation, remote: true do |f| %>
+                      <%= f.hidden_field :status, :value => 'false' %>
+                      <%= f.hidden_field :from, :value => '@user_id' %>
+                      <%= f.hidden_field :to, :value => '@friend_id' %>
+                      <%= f.submit '友達になる', :class => "btn btn-default", :style => 'width: 100px;' %>
+                    <% end %>
+                  <% elsif @relation.present? && @relation.status == false %>
+                    <button type="button" class="btn btn-default" disabled="disabled">友達申請中</button>
+                  <% end %>
+              </div>
+              <div class="col-xs-8 col-md-3">
+                <p><%= @friend_info[0].name %></p>
+                <p><%= @friend_info[0].prefecture %></p>
+              </div>
+              <div class="col-xs-8 col-md-6">
+                <p>完了レッスン数：　<%= @complete_lessons %></p>
+                <p>総学習時間：　<%= @total_time %></p>
+              </div>
+            </div>
+            <% if @chart_data_day.count > 0 %>
+              <div style="border: 1px solid #ccc; margin-top: 7px;">
+                <div class="tab-content">
+                  <div class="tab-pane active" id="days">
+                    <h3>日別学習レッスン数</h3>
+                    <%= line_chart @chart_data_day, height: "300px" %>
+                  </div>
+                  <div class="tab-pane" id="total">
+                    <h3>累積学習レッスン数</h3>
+                    <%= line_chart @chart_data_accumulation, height: "300px" %>
+                  </div>
+                </div>
+                <ul class="nav nav-pills nav-justified">
+                  <li class="active"><a href="#days" data-toggle="tab">日別学習時間</a></li>
+                  <li><a href="#total" data-toggle="tab">累積学習時間</a></li>
+                </ul>
+              </div>
+            <% end %>
+            <div class="clearfix">
+              <div class="col-xs-12" style="border: 1px solid #ccc; margin-top: 7px; padding-top: 7px; padding-bottom: 7px;">
+                <div class="row">
+                  <div class="col-xs-2">
+                    <img alt="profile" class="img-responsive" src="./images/70x70.png" />
+                  </div>
+                  <div class="col-xs-8">
+                    <p style="border: 1px solid #ccc; margin-right: 10px; margin-top: 10px;">元気ですか？</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-8 col-xs-offset-2">
+                    <p class="text-right" style="border: 1px solid #ccc; margin-right: 10px; margin-top: 10px;">元気ですよ！</p>
+                  </div>
+                  <div class="col-xs-2">
+                    <img alt="profile" class="img-responsive" src="./images/70x70.png" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-2">
+                    <img alt="profile" class="img-responsive" src="./images/70x70.png" />
+                  </div>
+                  <div class="col-xs-8">
+                    <p class="text-left" style="border: 1px solid #ccc; margin-right: 10px; margin-top: 10px;">そら良かった！</p>
+                  </div>
+                </div>
+                <form class="form-horizontal">
+                  <fieldset class="col-xs-10 col-xs-offset-2">
+                    <div class="form-group">
+                      <label for="messageInput" class="control-label"></label>
+                      <div>
+                        <input type="text" class="form-control" id="messageInput" placeholder="メッセージを入力してください" style="height: 120px;">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                      <button type="submit" class="btn btn-default">メッセージを送る</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>

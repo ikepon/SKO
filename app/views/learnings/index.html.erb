@@ -5,22 +5,24 @@
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="progress">
-                <div  style="border: 1px solid #ccc; margin-top: 7px;">
-                  <div class="tab-content">
-                    <div class="tab-pane active" id="days">
-                      <h3>日別学習レッスン数</h3>
-                      <%= line_chart @chart_data_day, height: "300px" %>
+                <% if @chart_data_day.count > 0 %>
+                  <div  style="border: 1px solid #ccc; margin-top: 7px;">
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="days">
+                        <h3>日別学習レッスン数</h3>
+                        <%= line_chart @chart_data_day, height: "300px" %>
+                      </div>
+                      <div class="tab-pane" id="total">
+                        <h3>累積学習レッスン数</h3>
+                        <%= line_chart @chart_data_accumulation, height: "300px" %>
+                      </div>
                     </div>
-                    <div class="tab-pane" id="total">
-                      <h3>累積学習レッスン数</h3>
-                      <%= line_chart @chart_data_accumulation, height: "300px" %>
-                    </div>
+                    <ul class="nav nav-pills nav-justified">
+                      <li class="active"><a href="#days" data-toggle="tab">日別学習時間</a></li>
+                      <li><a href="#total" data-toggle="tab">累積学習時間</a></li>
+                    </ul>
                   </div>
-                  <ul class="nav nav-pills nav-justified">
-                    <li class="active"><a href="#days" data-toggle="tab">日別学習時間</a></li>
-                    <li><a href="#total" data-toggle="tab">累積学習時間</a></li>
-                  </ul>
-                </div>
+                <% end %>
 
                       <% comp = "" %>
                       <% incomp = "" %>
@@ -86,13 +88,21 @@
                 <div class="col-xs-12">
                   <h3 class="tangen">学習中レッスン一覧</h3>
                   <ul>
-                    <%= raw(incomp) %>
+                    <% if incomp != '' %>
+                      <%= raw(incomp) %>
+                    <% else %>
+                      <p>学習中のレッスンはありません。</p>
+                    <% end %>
                   </ul>
                 </div>
                 <div class="col-xs-12">
                   <h3 class="tangen">完了レッスン一覧</h3>
                   <ul>
-                    <%= raw(comp) %>
+                    <% if comp != '' %>
+                      <%= raw(comp) %>
+                    <% else %>
+                      <p>完了レッスンはありません</p>
+                    <% end %>
                   </ul>
                 </div>
               </div>

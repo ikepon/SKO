@@ -16,6 +16,4 @@ class User < ActiveRecord::Base
   # validates :name, :avatar, :sex, :grade, :prefecture, presence: true
 
   scope :named, ->(q) { where 'name like ?', "%#{q}%" }
-  scope :sexed, ->(sex) { where 'sex like ?', "%#{sex}%" }
-
 end

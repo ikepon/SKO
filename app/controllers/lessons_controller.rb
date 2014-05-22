@@ -88,10 +88,10 @@ class LessonsController < ApplicationController
       @user_id = current_user.id
 
       if @user_id.present?
-        @learning = Learning.where(:user_id => @user_id, :lesson_id => @lesson).first_or_create do |l|
+        @learning = Learning.where("user_id = ? and lesson_id = ?", @user_id, @lesson).first_or_create do |l|
           l.user_id = @user_id
           l.lesson_id = @lesson
-          l.status = 0
+          l.status = 'false'
           l.check = 0
         end
       end

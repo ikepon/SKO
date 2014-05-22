@@ -11,10 +11,7 @@ Sko::Application.routes.draw do
   get "learnings/memo" => "learnings#memo"
   resources "learnings"
 
-  get "friends" => "friends#index"
-  get "friends/index"
-  get "friends/show"
-  get "friends/search"
+  resources "friends"
 
   get "faq/index"
 

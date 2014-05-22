@@ -5,11 +5,10 @@ class SearchForm
   # include ActiveModel::Conversion
   include ActiveModel::Model
 
-  attr_accessor :q, :sex
+  attr_accessor :q, :male, :female, :grade
 
   def initialize(params)
     self.q = params[:q] if params
-    self.sex = params[:sex] if params
   end
 
   def persisted?
