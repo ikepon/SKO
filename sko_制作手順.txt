@@ -66,6 +66,9 @@ rails g migration RenameBooleanToUser MailmagBoolean
 ●friendモデルの必須設定解除
   rails g migration ChangestatusOptionToFriend
 
+●friendモデルのカラム追加(fromto)
+  rails g migration AddColumnFromtoToFriend from:integer to:integer
+
 ●active_admin のインストールから設定まで
 http://ameblo.jp/hbnizm31/entrylist-2.html
 

@@ -6,44 +6,53 @@
             <div class="row" style="margin-top: 15px;">
               <div class="col-xs-4 col-md-3" style="padding-left: 20px;">
                 <%= image_tag @friend_info[0].avatar.url(:thumb) %>
-                  <% if @relation.present? && @relation.status.nil? %>
-                    <%= form_for @relation, remote: true do |f| %>
+                  <% if @friend.present? && @friend.status.nil? %>
+                    <%= form_for @friend do |f| %>
+                      <%= f.hidden_field :id, :value => @friend.id %>
                       <%= f.hidden_field :status, :value => 'false' %>
-                      <%= f.hidden_field :from, :value => '@user_id' %>
-                      <%= f.hidden_field :to, :value => '@friend_id' %>
+                      <%= f.hidden_field :from, :value => @user_id %>
+                      <%= f.hidden_field :to, :value => @friend_id %>
                       <%= f.submit '友達になる', :class => "btn btn-default", :style => 'width: 100px;' %>
                     <% end %>
-                  <% elsif @relation.present? && @relation.status == false %>
+                  <% elsif @friend.present? && @friend.status == false && @friend.to == @user_id %>
+                    <%= form_for @friend do |f| %>
+                      <%= f.hidden_field :id, :value => @friend.id %>
+                      <%= f.hidden_field :status, :value => 'true' %>
+                      <%= f.submit '友達になる', :class => "btn btn-default", :style => 'width: 100px;' %>
+                    <% end %>
+                  <% elsif @friend.present? && @friend.status == false && @friend.from == @user_id %>
                     <button type="button" class="btn btn-default" disabled="disabled">友達申請中</button>
                   <% end %>
               </div>
               <div class="col-xs-8 col-md-3">
                 <p><%= @friend_info[0].name %></p>
                 <p><%= @friend_info[0].prefecture %></p>
+                <p>
+                  <% if @friend_info[0].grade == 1 %>
+                    <%= '小学生以下' %>
+                  <% elsif @friend_info[0].grade == 2 %>
+                    <%= '中学1年生' %>
+                  <% elsif @friend_info[0].grade == 3 %>
+                    <%= '中学2年生' %>
+                  <% elsif @friend_info[0].grade == 4 %>
+                    <%= '中学3年生' %>
+                  <% elsif @friend_info[0].grade == 5 %>
+                    <%= '高校1年生' %>
+                  <% elsif @friend_info[0].grade == 6 %>
+                    <%= '高校2年生' %>
+                  <% elsif @friend_info[0].grade == 7 %>
+                    <%= '高校3年生' %>
+                  <% else %>
+                    <%= '大学生以上' %>
+                  <% end %>
+                </p>
               </div>
               <div class="col-xs-8 col-md-6">
                 <p>完了レッスン数：　<%= @complete_lessons %></p>
                 <p>総学習時間：　<%= @total_time %></p>
               </div>
             </div>
-            <% if @chart_data_day.count > 0 %>
-              <div style="border: 1px solid #ccc; margin-top: 7px;">
-                <div class="tab-content">
-                  <div class="tab-pane active" id="days">
-                    <h3>日別学習レッスン数</h3>
-                    <%= line_chart @chart_data_day, height: "300px" %>
-                  </div>
-                  <div class="tab-pane" id="total">
-                    <h3>累積学習レッスン数</h3>
-                    <%= line_chart @chart_data_accumulation, height: "300px" %>
-                  </div>
-                </div>
-                <ul class="nav nav-pills nav-justified">
-                  <li class="active"><a href="#days" data-toggle="tab">日別学習時間</a></li>
-                  <li><a href="#total" data-toggle="tab">累積学習時間</a></li>
-                </ul>
-              </div>
-            <% end %>
+            <% if @friend.present? && @friend.status == true %>
             <div class="clearfix">
               <div class="col-xs-12" style="border: 1px solid #ccc; margin-top: 7px; padding-top: 7px; padding-bottom: 7px;">
                 <div class="row">
@@ -87,3 +96,21 @@
                 </form>
               </div>
             </div>
+            <% if @chart_data_day.count > 0 %>
+              <div style="border: 1px solid #ccc; margin-top: 7px;">
+                <div class="tab-content">
+                  <div class="tab-pane active" id="days">
+                    <h3>日別学習レッスン数</h3>
+                    <%= line_chart @chart_data_day, height: "300px" %>
+                  </div>
+                  <div class="tab-pane" id="total">
+                    <h3>累積学習レッスン数</h3>
+                    <%= line_chart @chart_data_accumulation, height: "300px" %>
+                  </div>
+                </div>
+                <ul class="nav nav-pills nav-justified">
+                  <li class="active"><a href="#days" data-toggle="tab">日別学習時間</a></li>
+                  <li><a href="#total" data-toggle="tab">累積学習時間</a></li>
+                </ul>
+              </div>
+            <% end %>

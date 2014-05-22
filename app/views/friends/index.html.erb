@@ -1,78 +1,41 @@
             <ul class="nav nav-tabs">
               <li><a href="<%= learnings_path %>">学習状況</a></li>
               <li><a href="<%= learnings_memo_path %>"><span style="font-size: 12px; line-height: 120%; !important">メモ・チェックレッスン</a></li>
-              <li class="active"><a>友達<span style="color: red; font-size: 12px">New</span></a></li>
+              <li class="active"><a>友達
+                <% if @new_disp == true %>
+                  <span style="color: red; font-size: 12px">New</span>
+                <% end %>
+              </a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="friends">
                 <div class="col-xs-12">
                   <h3>友達一覧</h3>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
+                  <% if @friends.present? %>
+                    <% @friends.each do |f| %>
+                      <div class="col-md-2 col-xs-3">
+                        <%= image_tag f.avatar.url(:thumb) %><br><%= link_to f.name, friend_path(f.id) %>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <p>友達はいません。以下より友達を検索して、友達を作りましょう。</p>
+                  <% end %>
                 </div>
                 <div class="col-xs-12">
                   <h3 class="tangen">友達申請</h3>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
-                  <div class="col-md-2 col-xs-3">
-                    <%= image_tag '70x70.png', :alt => 'Main_Visual', :class => 'img-responsive top3' %>
-                  </div>
+                  <% if @from_friends.present? %>
+                    <% @from_friends.each do |f| %>
+                      <div class="col-md-2 col-xs-3">
+                        <%= image_tag f.avatar.url(:thumb) %><br>
+                        <% if f.created_at.to_i - @time_now < @new_period %>
+                          <span style="color: red;">【New】</span>
+                        <% end %>
+                        <%= link_to f.name, friend_path(f.id) %>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <p>友達申請はありません。</p>
+                  <% end %>
                 </div>
                 <div class="col-xs-12">
                   <h3 class="tangen">友達を探す</h3>
