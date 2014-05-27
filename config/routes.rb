@@ -25,8 +25,6 @@ Sko::Application.routes.draw do
   get "lessons/ranking"
   get "lessons/category"
   get "lessons", :to => 'lessons#index', :as => 'lessons'
-  get "lessons/learninginfo"
-  post "learnings/check_lesson_info"
 
   get "grade3/index" => 'lessons#grade'
   get "grade2/index" => 'lessons#grade'

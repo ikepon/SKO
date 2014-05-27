@@ -84,8 +84,8 @@ class LearningsController < ApplicationController
     if params[:learning][:check].present?
       check = params[:learning][:check]
     end
-    if params[:learning][:complete].present?
-      complete = params[:learning][:complete]
+    if params[:learning][:status].present?
+      complete = params[:learning][:status]
     end
 
     if @learning.update(learning_params)
@@ -98,7 +98,7 @@ class LearningsController < ApplicationController
     if check.present?
       render 'learnings/check'
     elsif complete.present?
-      render 'learning/complete'
+      render 'learnings/complete'
     end
   end
 

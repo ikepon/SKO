@@ -98,12 +98,6 @@ class LessonsController < ApplicationController
     end
   end
 
-  def learninginfo
-    @user_id = params[:user_id]
-    @lesson = params[:lesson_id]
-    @learning = Learning.where("user_id = ? and lesson_id = ?", @user_id, @lesson)
-  end
-
   def new_lesson
 
     add_breadcrumb '新着レッスン'

@@ -1,0 +1,13 @@
+                <% if user_signed_in? %>
+                  <% if @learning.present? && @learning.status == true %>
+                    <%= form_for @learning, remote: true do |f| %>
+                      <%= f.hidden_field :status, :value => 'false' %>
+                      <%= f.submit '完了済み', :class => "btn btn-default", :style => 'width: 80px;' %>
+                    <% end %>
+                  <% else %>
+                    <%= form_for @learning, remote: true do |f| %>
+                      <%= f.hidden_field :status, :value => 'true' %>
+                      <%= f.submit '完了', :class => "btn btn-default", :style => 'width: 80px;' %>
+                    <% end %>
+                  <% end %>
+                <% end %>
