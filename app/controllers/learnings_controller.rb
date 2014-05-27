@@ -1,3 +1,5 @@
+# coding utf-8
+
 class LearningsController < ApplicationController
   add_breadcrumb 'Home', '/'
 
@@ -66,21 +68,42 @@ class LearningsController < ApplicationController
   end
 
   def create
-      @learning = Learning.new(learning_params)
-      if @learning.save
-      redirect_to :back
+    @learning = Learning.new(learning_params)
+    if @learning.save
+      status = 'success'
+      # redirect_to :back
     else
-      render :template => "params[:controller]/params[:action]", :locals => {:learning => @learning}
+      status = 'error'
+      # render :template => "params[:controller]/params[:action]", :locals => {:learning => @learning}
     end
+    render json: { status: status, data: @learning }
   end
 
   def update
     @learning = Learning.find(params[:id])
-    if @learning.update(learning_params)
-      redirect_to :back
-    else
-      render :template => "params[:controller]/params[:action]", :locals => {:learning => @learning}
+    if params[:learning][:check].present?
+      check = params[:learning][:check]
     end
+    if params[:learning][:complete].present?
+      complete = params[:learning][:complete]
+    end
+
+    if @learning.update(learning_params)
+      status_s = 'success'
+    else
+      status_s = 'error'
+    end
+    @learning = Learning.find_by_id(params[:id])
+
+    if check.present?
+      render 'learnings/check'
+    elsif complete.present?
+      render 'learning/complete'
+    end
+  end
+
+  def check_lesson_info
+
   end
 
   private

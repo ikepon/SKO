@@ -13,6 +13,8 @@ Sko::Application.routes.draw do
 
   resources "friends"
 
+  resources "messages", :except => [:index, :show]
+
   get "faq/index"
 
   get 'contact/new' => 'contact#new', :as => 'contact'
@@ -23,6 +25,8 @@ Sko::Application.routes.draw do
   get "lessons/ranking"
   get "lessons/category"
   get "lessons", :to => 'lessons#index', :as => 'lessons'
+  get "lessons/learninginfo"
+  post "learnings/check_lesson_info"
 
   get "grade3/index" => 'lessons#grade'
   get "grade2/index" => 'lessons#grade'

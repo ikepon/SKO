@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   # end
 
   def sidebar
+    # 新着レッスン、人気レッスン
     @new_lessons = Lesson.select('grade, unit_name, unit_item_name, created_at').order('created_at DESC').limit(3)
     popular_lessons_ids = Learning.group('lesson_id').order('count_lesson_id DESC').count('lesson_id').keys
     @popular_lessons = Lesson.find(popular_lessons_ids)
@@ -35,18 +36,17 @@ class ApplicationController < ActionController::Base
 
       @user_info = User.where(:id => @user_id)
 
-      @learning_ids = Learning.where("user_id = ? and status = ?", @user_id, true).group('lesson_id').count('lesson_id').keys
-      @learning_count = @learning_ids.count
+      @user_learning_ids = Learning.where("user_id = ? and status = ?", @user_id, true).pluck('lesson_id')
 
       @sum_time = 0
-      @times = Lesson.where(:id => @learning_ids).select('time')
+      @times = Lesson.where(:id => @user_learning_ids).select('time')
 
       if @times.present?
         @times.each do |t|
           @sum_time += t.time.min * 60 + t.time.sec
         end
       end
-      @total_time = Time.now.midnight.advance(:seconds => @sum_time).strftime('%T')
+      @user_total_time = Time.now.midnight.advance(:seconds => @sum_time).strftime('%T')
     end
 
   end

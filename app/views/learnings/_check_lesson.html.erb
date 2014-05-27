@@ -1,0 +1,15 @@
+              <% if user_signed_in? %>
+                <div id="check" class="col-xs-2">
+                  <% if @learning.present? && @learning.check == true %>
+                    <%= form_for @learning, remote: true do |f| %>
+                      <%= f.hidden_field :check, :value => 'false' %>
+                      <%= f.submit 'チェック済み', :class => "btn btn-default lesson_check", :style => 'width: 110px;' %>
+                    <% end %>
+                  <% else %>
+                    <%= form_for @learning, remote: true do |f| %>
+                      <%= f.hidden_field :check, :value => 'true' %>
+                      <%= f.submit 'チェックする', :class => "btn btn-default", :style => 'width: 110px;' %>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>

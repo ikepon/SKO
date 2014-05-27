@@ -69,6 +69,9 @@ rails g migration RenameBooleanToUser MailmagBoolean
 ●friendモデルのカラム追加(fromto)
   rails g migration AddColumnFromtoToFriend from:integer to:integer
 
+●messageコントローラ作成
+  rails g controller messages
+
 ●active_admin のインストールから設定まで
 http://ameblo.jp/hbnizm31/entrylist-2.html
 

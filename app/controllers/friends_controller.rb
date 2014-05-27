@@ -21,10 +21,12 @@ class FriendsController < ApplicationController
 
 
     # 友達
-    # Friendテーブル（友達状況）から、友達をのidを取ってくる
-    @friend_ids = Friend.where(:to => @user_id, :status => true).pluck(:from)
+    # Friendテーブル（友達状況）から、友達のidを取ってくる
+    @friend_ids = []
+    @friend_ids += Friend.where(:user_id1 => @user_id, :status => true).pluck(:user_id2)
+    @friend_ids += Friend.where(:user_id2 => @user_id, :status => true).pluck(:user_id1)
     # 上記idを元に、Userテーブルから情報を取ってくる
-    @friends = User.where("id = ?", @friend_ids)
+    @friends = User.where(:id => @friend_ids)
 
     # 友達申請
     # Friendテーブル（友達状況）から、友だち申請のあった人（status = false）のidを取ってくる
@@ -102,9 +104,9 @@ class FriendsController < ApplicationController
     end
 
     @sum_time = 0
-    @learning_ids = Learning.where("user_id = ? and status = ?", @friend_id, true).group('lesson_id').count('lesson_id').keys
-    @times = Lesson.where(:id => @learning_ids).select('time')
-    @complete_lessons = @learning_ids.count
+    @friend_learning_ids = Learning.where("user_id = ? and status = ?", @friend_id, true).group('lesson_id').count('lesson_id').keys
+    @times = Lesson.where(:id => @friend_learning_ids).select('time')
+    @friend_complete_lessons = @friend_learning_ids.count
 
     if @times.present?
       @times.each do |t|
@@ -112,12 +114,11 @@ class FriendsController < ApplicationController
       end
     end
 
-    @total_time = Time.now.midnight.advance(:seconds => @sum_time).strftime('%T')
+    @friend_total_time = Time.now.midnight.advance(:seconds => @sum_time).strftime('%T')
 
     # 友達状況
     if user_signed_in?
       if @user_id > @friend_id
-
         @friend = Friend.where("user_id1 = ? and user_id2 = ?", @friend_id, @user_id).first_or_create do |l|
           l.user_id1 = @friend_id
           l.user_id2 = @user_id
@@ -131,6 +132,11 @@ class FriendsController < ApplicationController
         end
       end
     end
+
+    # message機能
+    @friend_messages = Message.find_all_by_friend_id(@friend.id)
+    @message = Message.new
+
   end
 
   def create
