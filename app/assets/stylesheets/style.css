@@ -307,6 +307,10 @@ button.form-left {
  text-align: left;
 }
 
+.disabled {
+  background-color: #DCDCDC !important;
+}
+
 .alert-info {
   margin-bottom: 40px;
 }

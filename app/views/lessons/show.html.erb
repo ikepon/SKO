@@ -4,21 +4,7 @@
                 <h2><%= lesson.title %></h2>
               </div>
               <div id="check_lesson_info">
-                <% if user_signed_in? %>
-                  <div id="check_lesson_info" class="col-xs-2">
-                    <% if @learning.present? && @learning.check == true %>
-                      <%= form_for @learning, remote: true do |f| %>
-                        <%= f.hidden_field :check, :value => 'false' %>
-                        <%= f.submit 'チェック済み', :class => "btn btn-default lesson_check", :style => 'width: 110px;' %>
-                      <% end %>
-                    <% else %>
-                      <%= form_for @learning, remote: true do |f| %>
-                        <%= f.hidden_field :check, :value => 'true' %>
-                        <%= f.submit 'チェックする', :class => "btn btn-default", :style => 'width: 110px;' %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                <% end %>
+                <%= render 'learnings/check_lesson' %>
               </div>
               <div class="col-xs-12">
                 <p><%= lesson.summary %></p>
@@ -28,25 +14,13 @@
               </div>
               <div class="col-xs-12 movie_button">
                 <div class="col-xs-4 lesson_pre">
-                  <%= button_tag '前へ', :class => 'btn btn-default', :onclick => "location.href='/'", :style => 'width: 80px;' %>
+                  <a href="<%= @pre_lesson %>" class="btn btn-default<%= @pre_lesson_class %>" style="width: 80px;"> 前へ </a>
                 </div>
                 <div id="complete_lesson_info" class="col-xs-4 lesson_movie">
-                <% if user_signed_in? %>
-                  <% if @learning.present? && @learning.status == true %>
-                    <%= form_for @learning, remote: true do |f| %>
-                      <%= f.hidden_field :status, :value => 'false' %>
-                      <%= f.submit '完了済み', :class => "btn btn-default", :style => 'width: 80px;' %>
-                    <% end %>
-                  <% else %>
-                    <%= form_for @learning, remote: true do |f| %>
-                      <%= f.hidden_field :status, :value => 'true' %>
-                      <%= f.submit '完了', :class => "btn btn-default", :style => 'width: 80px;' %>
-                    <% end %>
-                  <% end %>
-                <% end %>
+                  <%= render 'learnings/complete_lesson' %>
                 </div>
                 <div class="col-xs-4 lesson_next">
-                  <%= button_tag '次へ', :class => 'btn btn-default', :onclick => "location.href='/'", :style => 'width: 80px;' %>
+                  <a href="<%= @next_lesson %>" class="btn btn-default<%= @next_lesson_class %>" style="width: 80px;"> 次へ </a>
                 </div>
               </div>
               <ul class="nav nav-tabs">

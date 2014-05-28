@@ -60,7 +60,7 @@ class LessonsController < ApplicationController
     add_breadcrumb @grade_jp, '/grade' + @grade + '/index'
     add_breadcrumb @grade_unit_item_name
 
-    @grade_lessons = Lesson.where(["unit_item_name = ? and grade = ?", @grade_unit_item_name, @grade]).select('id, title, summary, exercise, point')
+    @grade_lessons = Lesson.where("unit_item_name = ? and grade = ?", @grade_unit_item_name, @grade).select('id, title, summary, exercise, point')
 
     @title = '中学1年生数学の' + @grade_unit_item_name
     @description = '中学1年生で勉強する数学の単元「' + @grade_unit_item_name + '」のレッスン一覧です。'
@@ -74,15 +74,48 @@ class LessonsController < ApplicationController
     @grade = request.path_info[6,1]
     @grade_jp = "中学" + @grade + "年生"
 
-    add_breadcrumb @grade_jp, '/grade1' + @grade + '/index'
+    add_breadcrumb @grade_jp, '/grade' + @grade + '/index'
     add_breadcrumb @grade_unit_item_name,'/grade' + @grade + '/' + @grade_unit_item_name
 
-    @lesson_info = Lesson.where(:id => @lesson).select('id, title, summary, time, explanation, exercise, exercise_answer, point')
+    @lesson_info = Lesson.where(:id => @lesson).select('id, title, summary, time, explanation, exercise, exercise_answer, point, number')
 
     add_breadcrumb @lesson_info[0].title
 
     @title = '中学1年生数学の' + @lesson_info[0].title
     @description = '中学1年生で勉強する数学の単元「' + @grade_unit_item_name + '」の「' + @lesson_info[0].title + '」内容です。'
+
+    #pre, next
+    @grade_lesson_numbers = Lesson.where("unit_item_name = ? and grade = ?", @grade_unit_item_name, @grade).order("number").pluck('number')
+    @lesson_num = @lesson_info[0].number
+
+    @lesson_index = @grade_lesson_numbers.index(@lesson_num)
+
+    if @lesson_index == 0
+      @pre_lesson = "#"
+      @pre_lesson_class = " disabled"
+
+      @next_lesson_info = Lesson.where("number = ?", @grade_lesson_numbers[@lesson_index + 1]).select('grade, unit_item_name, id')
+      @next_lesson = "/grade" + @next_lesson_info[0].grade.to_s + "/" + @next_lesson_info[0].unit_item_name + "/" + @next_lesson_info[0].id.to_s
+      @next_lesson_class = ""
+
+    elsif @lesson_index == @grade_lesson_numbers.count - 1
+      @pre_lesson_info = Lesson.where("number = ?", @grade_lesson_numbers[@lesson_index - 1]).select('grade, unit_item_name, id')
+      @pre_lesson = "/grade" + @pre_lesson_info[0].grade.to_s + "/" + @pre_lesson_info[0].unit_item_name + "/" + @pre_lesson_info[0].id.to_s
+      @pre_lesson_class = ""
+
+      @next_lesson = "#"
+      @next_lesson_class =  " disabled"
+
+    else
+      @pre_lesson_info = Lesson.where("number = ?", @grade_lesson_numbers[@lesson_index - 1]).select('grade, unit_item_name, id')
+      @pre_lesson = "/grade" + @pre_lesson_info[0].grade.to_s + "/" + @pre_lesson_info[0].unit_item_name + "/" + @pre_lesson_info[0].id.to_s
+      @pre_lesson_class = ""
+
+      @next_lesson_info = Lesson.where("number = ?", @grade_lesson_numbers[@lesson_index + 1]).select('grade, unit_item_name, id')
+      @next_lesson = "/grade" + @next_lesson_info[0].grade.to_s + "/" + @next_lesson_info[0].unit_item_name + "/" + @next_lesson_info[0].id.to_s
+      @next_lesson_class = ""
+
+    end
 
     if user_signed_in?
       @user_id = current_user.id

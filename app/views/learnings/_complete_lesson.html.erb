@@ -2,7 +2,7 @@
                   <% if @learning.present? && @learning.status == true %>
                     <%= form_for @learning, remote: true do |f| %>
                       <%= f.hidden_field :status, :value => 'false' %>
-                      <%= f.submit '完了済み', :class => "btn btn-default", :style => 'width: 80px;' %>
+                      <%= f.submit '完了済み', :class => "btn btn-success", :style => 'width: 80px;' %>
                     <% end %>
                   <% else %>
                     <%= form_for @learning, remote: true do |f| %>
