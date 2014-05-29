@@ -5,7 +5,7 @@
               <li><%= image_tag @user_info[0].avatar.url(:thumb) %>　<%= @user_info[0].name %></li>
               <li>【総学習時間】　　<%= @user_total_time %>　(<%= @user_rank %>位)</li>
               <li>【完了レッスン数] 　<%= @user_learning_ids.count %>レッスン</li>
-              <li class="text-right"><a href="/lessons/new_lesson">新着レッスン一覧</a></li>
+              <li class="text-right"><%= link_to 'プロフィール確認・編集', edit_user_registration_path(@user_id) %></li>
             </ul>
           </div>
         <% end %>
