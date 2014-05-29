@@ -1,7 +1,11 @@
             <ul class="nav nav-tabs">
               <li><a href="<%= learnings_path %>">学習状況</a></li>
               <li class="active"><a><span style="font-size: 12px; line-height: 120%; !important">メモ・チェックレッスン</span></a></li>
-              <li><a href="<%= friends_path %>">友達<span style="color: red; font-size: 12px">New</span></a></li>
+              <li><a href="<%= friends_path %>">友達
+                <% if @new_disp == true %>
+                  <span style="color: red; font-size: 12px">New</span>
+                <% end %>
+              </a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="memo">

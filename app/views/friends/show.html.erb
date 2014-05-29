@@ -1,11 +1,21 @@
             <ul class="nav nav-tabs">
               <li><a href="<%= learnings_path %>">学習状況</a></li>
               <li><a href="<%= learnings_memo_path %>"><span style="font-size: 12px; line-height: 120%; !important">メモ・チェックレッスン</a></li>
-              <li class="active"><a>友達<span style="color: red; font-size: 12px">New</span></a></li>
+              <li class="active"><a>友達
+                <% if @new_disp == true %>
+                  <span style="color: red; font-size: 12px">New</span>
+                <% end %>
+              </a></li>
             </ul>
             <div class="row" style="margin-top: 15px;">
               <div class="col-xs-4 col-md-3" style="padding-left: 20px;">
-                <%= image_tag @friend_info[0].avatar.url(:thumb) %>
+                <div class="user-img-wrapper">
+                  <%= image_tag @friend_info[0].avatar.url(:thumb), :class => 'user-img' %>
+                </div>
+                <div class="top10" style="clear: both;">
+                  <% if @friend_info[0].comment.present? %>
+                    <%= @friend_info[0].comment %>
+                  <% end %>
                   <% if @friend.present? && @friend.status.nil? %>
                     <%= form_for @friend do |f| %>
                       <%= f.hidden_field :id, :value => @friend.id %>
@@ -23,6 +33,7 @@
                   <% elsif @friend.present? && @friend.status == false && @friend.from == @user_id %>
                     <button type="button" class="btn btn-default" disabled="disabled">友達申請中</button>
                   <% end %>
+                </div>
               </div>
               <div class="col-xs-8 col-md-3">
                 <p><%= @friend_info[0].name %></p>
@@ -64,13 +75,17 @@
                               <p class="text-right" style="border: 1px solid #ccc; margin-right: 10px; margin-top: 10px;"><%= raw(hbr(m.message_content)) %></p>
                             </div>
                             <div class="col-xs-2">
-                              <%= image_tag m.user.avatar.url(:thumb) %>
+                              <div class="user-img-wrapper">
+                                <%= image_tag m.user.avatar.url(:thumb) %>
+                              </div>
                             </div>
                           </div>
                         <% else %>
                           <div class="row">
                             <div class="col-xs-2">
-                              <p class="text-right" style="border: 1px solid #ccc; margin-right: 10px; margin-top: 10px;"><%= image_tag m.user.avatar.url(:thumb) %></p>
+                              <div class="user-img-wrapper">
+                                <%= image_tag m.user.avatar.url(:thumb) %>
+                              </div>
                             </div>
                             <div class="col-xs-8">
                               <p style="border: 1px solid #ccc; margin-right: 10px; margin-top: 10px;"><%= raw(hbr(m.message_content)) %></p>

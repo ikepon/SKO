@@ -103,6 +103,21 @@ class FriendsController < ApplicationController
       @columun += 1
     end
 
+    # Newの表示
+    @time_now = Time.now.to_i
+    # Newの表示日
+    dif_day = 3
+    @new_period = 60 * 60 * 24 * dif_day
+
+    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:created_at)
+
+    @new_disp = false
+    @from_friend_times.each do |t|
+      if @time_now - t.to_i < @new_period
+        @new_disp = true
+      end
+    end
+
     @sum_time = 0
     @friend_learning_ids = Learning.where("user_id = ? and status = ?", @friend_id, true).group('lesson_id').count('lesson_id').keys
     @times = Lesson.where(:id => @friend_learning_ids).select('time')

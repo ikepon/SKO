@@ -29,6 +29,21 @@ class LearningsController < ApplicationController
       @columun += 1
     end
 
+    # Newの表示
+    @time_now = Time.now.to_i
+    # Newの表示日
+    dif_day = 3
+    @new_period = 60 * 60 * 24 * dif_day
+
+    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:created_at)
+
+    @new_disp = false
+    @from_friend_times.each do |t|
+      if @time_now - t.to_i < @new_period
+        @new_disp = true
+      end
+    end
+
     @learning_ids = Learning.where("user_id = ? and status = ?", @user_id, true).group('lesson_id').count('lesson_id').keys
 
     @lessons1 = Lesson.where(:grade => '1').select('grade, unit_name, unit_item_name').group('unit_item_name')
@@ -64,6 +79,21 @@ class LearningsController < ApplicationController
     @memos = Learning.where("user_id = ? and memo not ?", @user_id, nil).select('lesson_id, memo')
 
     @checks = Learning.where(:user_id => @user_id, :check => true).select('lesson_id')
+
+    # Newの表示
+    @time_now = Time.now.to_i
+    # Newの表示日
+    dif_day = 3
+    @new_period = 60 * 60 * 24 * dif_day
+
+    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:created_at)
+
+    @new_disp = false
+    @from_friend_times.each do |t|
+      if @time_now - t.to_i < @new_period
+        @new_disp = true
+      end
+    end
 
   end
 

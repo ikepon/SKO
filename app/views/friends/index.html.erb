@@ -15,7 +15,10 @@
                   <% if @friends.present? %>
                     <% @friends.each do |f| %>
                       <div class="col-md-2 col-xs-3">
-                        <%= link_to image_tag(f.avatar.url(:thumb)), friend_path(f.id) %><br><%= link_to f.name, friend_path(f.id) %>
+                        <div class="user-img-wrapper">
+                          <%= link_to image_tag(f.avatar.url(:thumb)), friend_path(f.id), :class => 'user-img' %>
+                        </div>
+                        <%= link_to f.name, friend_path(f.id) %>
                       </div>
                     <% end %>
                   <% else %>
@@ -27,10 +30,12 @@
                   <% if @from_friends.present? %>
                     <% @from_friends.each do |f| %>
                       <div class="col-md-2 col-xs-3">
+                        <div class="user-img-wrapper">
+                          <%= link_to image_tag(f.avatar.url(:thumb)), friend_path(f.id), :class => 'user-img' %>
+                        </div>
                         <% if f.created_at.to_i - @time_now < @new_period %>
                           <span style="color: red;">【New】</span>
                         <% end %>
-                        <%= link_to image_tag(f.avatar.url(:thumb)), friend_path(f.id) %><br>
                         <%= link_to f.name, friend_path(f.id) %>
                       </div>
                     <% end %>
@@ -73,12 +78,15 @@
                     </div>
                     <%= f.submit '検索する', :class => 'btn btn-default col-xs-offset-3', :style => 'width: 80px;' %>
                   <% end %>
-                  <div id="search-result" class="row">
+                  <div id="search-result" class="row top15">
                   <% if params[:commit].present? %>
                     <% if @search_users.present? %>
                       <% @search_users.each do |s| %>
                         <div class="col-md-2 col-xs-3">
-                          <%= link_to image_tag(s.avatar.url(:thumb)), friend_path(s.id) %><br><%= link_to s.name, friend_path(s.id) %>
+                          <div class="user-img-wrapper">
+                            <%= link_to image_tag(s.avatar.url(:thumb)), friend_path(s.id), :class => 'user-img' %>
+                          </div>
+                          <%= link_to s.name, friend_path(s.id) %>
                         </div>
                       <% end %>
                     <% else %>
