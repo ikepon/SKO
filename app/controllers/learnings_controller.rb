@@ -86,6 +86,9 @@ class LearningsController < ApplicationController
     end
     if params[:learning][:status].present?
       complete = params[:learning][:status]
+      if complete == 'true'
+        params[:learning][:complete_date] = Time.now
+      end
     end
 
     if @learning.update(learning_params)
@@ -109,7 +112,7 @@ class LearningsController < ApplicationController
   private
 
       def learning_params
-          params[:learning].permit(:user_id, :lesson_id, :status, :memo, :check, :complete_data)
+          params[:learning].permit(:user_id, :lesson_id, :status, :memo, :check, :complete_date)
       end
 
  end
