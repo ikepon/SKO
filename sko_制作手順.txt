@@ -111,6 +111,9 @@ rails g active_admin:resource User
 ・learningコントローラー作成
   rails g controller learnings create update
 
+●lessonモデルにPDFファイルを追加
+  rails g paperclip lesson exe_pdf
+
 ●会員削除のプログラム
 <h3>Cancel my account</h3>
 

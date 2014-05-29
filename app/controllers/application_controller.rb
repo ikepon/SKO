@@ -20,13 +20,6 @@ class ApplicationController < ActionController::Base
 
     @users_total = User.all.count()
     @users_grade = User.group('grade').count('grade')
-    @user_ranking = []
-    Learning.where('status = ?', true).joins(:lesson).group(:user).sum(:time).each{ | user, total |
-      @user_ranking += [user.id, total.to_i]
-    }
-    @user_ranking = Hash[*@user_ranking].sort_by{|k,v| -v }
-    @user_ranking_hash = Hash[@user_ranking].keys
-    @user_rank = @user_ranking_hash.index(current_user.id) + 1
 
     @complete_lessons = Learning.where(:status => true).count()
     @check_lessons = Learning.where(:check => true).count()
@@ -54,6 +47,14 @@ class ApplicationController < ActionController::Base
         end
       end
       @user_total_time = Time.now.midnight.advance(:seconds => @sum_time).strftime('%T')
+
+      @user_ranking = []
+      Learning.where('status = ?', true).joins(:lesson).group(:user).sum(:time).each{ | user, total |
+        @user_ranking += [user.id, total.to_i]
+      }
+      @user_ranking = Hash[*@user_ranking].sort_by{|k,v| -v }
+      @user_ranking_hash = Hash[@user_ranking].keys
+      @user_rank = @user_ranking_hash.index(current_user.id) + 1
     end
 
   end

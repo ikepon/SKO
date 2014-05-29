@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529025601) do
+ActiveRecord::Schema.define(version: 20140529060422) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -103,24 +103,28 @@ ActiveRecord::Schema.define(version: 20140529025601) do
   add_index "learnings", ["user_id"], name: "index_learnings_on_user_id"
 
   create_table "lessons", force: true do |t|
-    t.string   "title",                         null: false
-    t.text     "summary",           limit: 255, null: false
+    t.string   "title",                            null: false
+    t.text     "summary",              limit: 255, null: false
     t.string   "movie"
     t.time     "time"
-    t.integer  "grade",                         null: false
-    t.string   "category_name",                 null: false
-    t.text     "category_summary",  limit: 255, null: false
-    t.string   "unit_name",                     null: false
-    t.text     "unit_summary",      limit: 255, null: false
-    t.string   "unit_item_name",                null: false
-    t.text     "unit_item_summary", limit: 255, null: false
-    t.text     "explanation",       limit: 255, null: false
-    t.text     "exercise",          limit: 255, null: false
-    t.text     "exercise_answer",   limit: 255, null: false
-    t.text     "point",             limit: 255, null: false
-    t.integer  "number",                        null: false
+    t.integer  "grade",                            null: false
+    t.string   "category_name",                    null: false
+    t.text     "category_summary",     limit: 255, null: false
+    t.string   "unit_name",                        null: false
+    t.text     "unit_summary",         limit: 255, null: false
+    t.string   "unit_item_name",                   null: false
+    t.text     "unit_item_summary",    limit: 255, null: false
+    t.text     "explanation",          limit: 255, null: false
+    t.text     "exercise",             limit: 255, null: false
+    t.text     "exercise_answer",      limit: 255, null: false
+    t.text     "point",                limit: 255, null: false
+    t.integer  "number",                           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "exe_pdf_file_name"
+    t.string   "exe_pdf_content_type"
+    t.integer  "exe_pdf_file_size"
+    t.datetime "exe_pdf_updated_at"
   end
 
   create_table "messages", force: true do |t|
