@@ -6,7 +6,7 @@ class CreateLearnings < ActiveRecord::Migration
       t.boolean :status, :null => false, :default => "false"
       t.string :memo, :null => false, :default => ""
       t.boolean :check, :null => false, :default => "false"
-      t.datetime :complete_date
+      t.datetime :complete_date, :null => false, :default => ""
 
       t.timestamps
     end
