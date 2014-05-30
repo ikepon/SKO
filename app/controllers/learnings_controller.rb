@@ -83,6 +83,9 @@ class LearningsController < ApplicationController
     @user_id = current_user.id
 
     @memos = Learning.where("user_id = ? and memo not ?", @user_id, nil).select('lesson_id, memo')
+    if @memos.present?
+      @memos = {}
+    end
 
     @checks = Learning.where(:user_id => @user_id, :check => true).select('lesson_id')
 
