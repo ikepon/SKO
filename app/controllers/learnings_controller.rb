@@ -38,7 +38,7 @@ class LearningsController < ApplicationController
     dif_day = 3
     @new_period = 60 * 60 * 24 * dif_day
 
-    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:created_at)
+    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:updated_at)
 
     @new_disp = false
     @from_friend_times.each do |t|
@@ -83,9 +83,6 @@ class LearningsController < ApplicationController
     @user_id = current_user.id
 
     @memos = Learning.where("user_id = ? and memo not ?", @user_id, nil).select('lesson_id, memo')
-    if @memos.present?
-      @memos = {}
-    end
 
     @checks = Learning.where(:user_id => @user_id, :check => true).select('lesson_id')
 
@@ -95,7 +92,7 @@ class LearningsController < ApplicationController
     dif_day = 3
     @new_period = 60 * 60 * 24 * dif_day
 
-    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:created_at)
+    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:updated_at)
 
     @new_disp = false
     @from_friend_times.each do |t|

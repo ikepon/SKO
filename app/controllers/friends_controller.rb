@@ -40,7 +40,7 @@ class FriendsController < ApplicationController
     dif_day = 3
     @new_period = 60 * 60 * 24 * dif_day
 
-    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:created_at)
+    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:updated_at)
 
     @new_disp = false
     @from_friend_times.each do |t|
@@ -109,7 +109,7 @@ class FriendsController < ApplicationController
     dif_day = 3
     @new_period = 60 * 60 * 24 * dif_day
 
-    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:created_at)
+    @from_friend_times = Friend.where(:to => @user_id, :status => false).pluck(:updated_at)
 
     @new_disp = false
     @from_friend_times.each do |t|

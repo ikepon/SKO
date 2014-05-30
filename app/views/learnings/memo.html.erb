@@ -12,6 +12,9 @@
                 <div class="col-xs-12">
                   <h3 class="tangen">学習メモ</h3>
                   <% if @memos.present? %>
+                    <%= @memos %>
+                  <% end %>
+                  <% if @memos.present? %>
                     <dl id="memo">
                       <% @memos.each do |m| %>
                         <% if m.memo.present? %>
