@@ -16,6 +16,9 @@ class LearningsController < ApplicationController
 
     add_breadcrumb 'マイページ'
 
+    @title = '学習状況マイページ'
+    @description = '個人の学習状況を確認するページです。'
+
     @user_id = current_user.id
 
     @chart_data_day = Learning.where("user_id = ? and status = ?", @user_id, true).group('date(complete_date)').count
@@ -73,6 +76,9 @@ class LearningsController < ApplicationController
   def memo
 
     add_breadcrumb '学習メモ・チェックレッスン'
+
+    @title = '学習メモ・チェックレッスン'
+    @description = '各レッスンでのメモやチェックしたレッスン一覧を表示します。'
 
     @user_id = current_user.id
 
