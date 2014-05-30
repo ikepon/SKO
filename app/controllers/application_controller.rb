@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
       }
       @user_ranking = Hash[*@user_ranking].sort_by{|k,v| -v }
       @user_ranking_hash = Hash[@user_ranking].keys
-      @user_rank = @user_ranking_hash.index(@user_id) + 1
+      @user_rank = (@user_ranking_hash.index(@user_id).to_i + 1)
     end
 
   end
