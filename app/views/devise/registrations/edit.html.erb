@@ -109,7 +109,8 @@
         <p>ユーザー画像</p>
       </div>
       <div class="col-xs-6">
-        <%= f.file_field :avatar, :class => 'form-control' %>
+        <%= image_tag(f.object.avatar.url(:thumb)) %><span class="text-danger">※現在の画像</span>
+        <%= f.file_field :avatar, :class => 'form-control top15' %>
         <i class="text-danger">※変更しない場合は空白のままにしてください。</i>
       </div>
     </div>

@@ -3,6 +3,10 @@ git commit -m "14051401"
 git push -u origin master
 
 
+****************************
+f.template.image_tag(f.object.avatar.url(:thumb))
+****************************
+
 ●プロジェクトの作成
   rails new sko
 
