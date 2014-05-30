@@ -5,7 +5,9 @@
               <li><div class="user-img-wrapper"><%= image_tag @user_info[0].avatar.url(:thumb), :class => "user-img" %></div>　<%= @user_info[0].name %></li>
               <li class="top10" style="clear: both;">【総学習時間】　　<%= @user_total_time %>　(<%= @user_rank %>位)</li>
               <li>【完了レッスン数] 　<%= @user_learning_ids.count %>レッスン</li>
+              <% if @user_info[0].comment.present? %>
               <li><p class="bg-success" style="padding: 10px;"><%= @user_info[0].comment %></p></li>
+              <% end %>
               <li class="text-right"><%= link_to 'プロフィール確認・編集', edit_user_registration_path(@user_id) %></li>
             </ul>
           </div>
