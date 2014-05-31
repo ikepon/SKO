@@ -26,7 +26,7 @@ class LessonsController < ApplicationController
 
   def home
 
-    @grade1_units = Lesson.where(:grade => '1').select('lessons.unit_name, lessons.id').group('unit_name')
+    @grade1_units = Lesson.where(:grade => '1').select('lessons.unit_name, lessons.id').group('lessons.unit_name')
     @grade1_units_all = Lesson.where(:grade => '1').select('unit_name, unit_item_name, lessons.id').group('lessons.unit_item_name')
     @grade2_units = Lesson.where(:grade => '2').select('unit_name, lessons.id').group('lessons.unit_name')
     @grade2_units_all = Lesson.where(:grade => '2').select('unit_name, unit_item_name, lessons.id').group('lessons.unit_item_name')
