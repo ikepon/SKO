@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
       Learning.where('status = ?', true).joins(:lesson).group(:user).sum(:time).each{ | user, total |
         @user_ranking += [user.id, total.to_i]
       }
-      @user_ranking = Hash[*@user_ranking].sort_by{|k,v| -v }
+      @user_ranking = Hash[*@user_ranking].sort_by{|k,v| v }
       @user_ranking_hash = Hash[@user_ranking].keys
       @user_rank = (@user_ranking_hash.index(@user_id).to_i + 1)
     end
