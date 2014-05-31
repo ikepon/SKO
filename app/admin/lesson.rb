@@ -12,6 +12,7 @@ ActiveAdmin.register Lesson do
     column :summary
     column :number
     column :category_name
+    column :exe_pdf_file_name
     column :created_at
     default_actions
   end
@@ -32,6 +33,7 @@ ActiveAdmin.register Lesson do
       f.input :explanation
       f.input :exercise
       f.input :exercise_answer
+      f.input :exe_pdf, :as => :file
       f.input :point
       f.input :number
     end

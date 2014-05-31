@@ -3,4 +3,6 @@ class Lesson < ActiveRecord::Base
   has_many :learnings
 
   has_attached_file :exe_pdf
+  validates_attachment_content_type :exe_pdf, :content_type => ["application/pdf"]
+
 end

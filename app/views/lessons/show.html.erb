@@ -34,6 +34,9 @@
                 </div>
                 <div class="tab-pane" id="exercise">
                   <p><%= raw(lesson.exercise) %></p>
+              <% if lesson.exe_pdf.present? %>
+                <%= link_to '練習問題をPDFファイルでDLする', lesson.exe_pdf.url %>
+              <% end %>
                 </div>
                 <div class="tab-pane" id="answer">
                   <p><%= raw(lesson.exercise_answer) %></p>

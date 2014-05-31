@@ -9,7 +9,7 @@
           <div class="hidden-xs hidden-sm">
             <% if user_signed_in? %>
               <ul class="profile">
-                <li><%= image_tag @user_info[0].avatar.url(:thumb) %>　<%= @user_info[0].name %></li>
+                <li><div class="user-img-wrapper"><%= image_tag @user_info[0].avatar.url(:thumb), :class => "user-img" %></div>　<%= @user_info[0].name %></li>
                 <li>【総学習時間】　　<%= @user_total_time %></li>
                 <li>【完了レッスン数] 　<%= @user_learning_ids.count %>レッスン</li>
                 <% if @user_info[0].comment.present? %>
