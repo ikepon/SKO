@@ -149,6 +149,10 @@
     <%= f.password_field :current_password %></div>
     <% end %>
 
-    <div><%= f.submit "更新する" %></div>
+  <div class="form-group">
+    <div class="col-xs-7 col-xs-offset-4">
+      <%= f.submit "更新する", :class => 'btn btn-default' %>
+    </div>
+  </div>
   <% end %>
 </div>
