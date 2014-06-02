@@ -15,6 +15,8 @@ group :production do
     gem 'mysql'
 end
 
+gem 'rails_12factor', group: :production
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
