@@ -21,13 +21,13 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :last_sign_in_ip
 
       ##user_auth
-      t.boolean :user_auth, :default => 'true', :null => false
+      t.boolean :user_auth, :default => true
 
       ##attributes
       t.string :sex, :null => false
       t.integer :grade, :null => false
       t.string :prefecture, :null => false
-      t.boolean :boolean, :null => false, :default => 'false'
+      t.boolean :boolean, :null => false, :default => false
 
       ## Confirmable
       # t.string   :confirmation_token
