@@ -5,8 +5,8 @@ class ChangeStringtotextToModel < ActiveRecord::Migration
     change_column( :faqs, :question, :text, default: nil)
     change_column( :faq_categories, :faq_category_summary, :text, default: nil)
     change_column( :contacts, :content, :text)
-    change_column( :agreements, :content, :text)
-    change_column( :privacies, :content, :text)
+    change_column( :agreements, :content, :text, default: nil)
+    change_column( :privacies, :content, :text, default: nil)
   end
 
   def self.down
