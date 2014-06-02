@@ -82,7 +82,7 @@ class LearningsController < ApplicationController
 
     @user_id = current_user.id
 
-    @memos = Learning.where("user_id = ?", @user_id).where.not("memo = ?", nil).select('lesson_id, memo')
+    @memos = Learning.where("user_id = ?", @user_id).select('lesson_id, memo')
 
     @checks = Learning.where(:user_id => @user_id, :check => true).select('lesson_id')
 
