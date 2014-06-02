@@ -25,5 +25,11 @@ test:
 #   timeout: 5000
 
 production:
-  adapter: pg
-  database: db/production.pg
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: db/production_sko
+  pool: 5
+  username: b83ff2528f8552
+  password: 5BkgdsnYfWGwQWEezwuhpgEIhV
+  host: ec2-54-197-237-120.compute-1.amazonaws.com:5432
