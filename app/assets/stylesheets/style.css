@@ -256,6 +256,12 @@ button.form-left {
   margin-bottom: 15px;
 }
 
+.content p.message {
+  border: 1px solid #ccc;
+  margin-right: 0px;
+  margin-top: 10px;
+}
+
 .content a.block {
   display: block;
 }
