@@ -92,34 +92,33 @@ class LessonsController < ApplicationController
     @description = '中学1年生で勉強する数学の単元「' + @grade_unit_item_name + '」の「' + @lesson_info[0].title + '」内容です。'
 
     #pre, next
-    @grade_lesson_numbers = Lesson.where("unit_item_name = ? and grade = ?", @grade_unit_item_name, @grade).order("number").pluck('number')
-    @lesson_num = @lesson_info[0].number
+    @grade_lesson_ids = Lesson.where("unit_item_name = ? and grade = ?", @grade_unit_item_name, @grade).order("number").pluck('id')
 
-    @lesson_index = @grade_lesson_numbers.index(@lesson_num)
+    @lesson_index = @grade_lesson_ids.index(@lesson.to_i)
 
     if @lesson_index == 0
       @pre_lesson = "#"
       @pre_lesson_class = " disabled"
 
-      @next_lesson_info = Lesson.where("number = ?", @grade_lesson_numbers[@lesson_index + 1]).select('grade, unit_item_name, id')
-      @next_lesson = "/grade" + @next_lesson_info[0].grade.to_s + "/" + @next_lesson_info[0].unit_item_name + "/" + @next_lesson_info[0].id.to_s
+      @next_lesson_info = Lesson.where("id = ?", @grade_lesson_ids[@lesson_index.to_i + 1]).select('grade, unit_item_name, id')
+      @next_lesson = "/grade" + @grade.to_s + "/" + @next_lesson_info[0].unit_item_name + "/" + @next_lesson_info[0].id.to_s
       @next_lesson_class = ""
 
-    elsif @lesson_index == @grade_lesson_numbers.count - 1
-      @pre_lesson_info = Lesson.where("number = ?", @grade_lesson_numbers[@lesson_index - 1]).select('grade, unit_item_name, id')
-      @pre_lesson = "/grade" + @pre_lesson_info[0].grade.to_s + "/" + @pre_lesson_info[0].unit_item_name + "/" + @pre_lesson_info[0].id.to_s
+    elsif @lesson_index == @grade_lesson_ids.count - 1
+      @pre_lesson_info = Lesson.where("id = ?", @grade_lesson_ids[@lesson_index.to_i - 1]).select('grade, unit_item_name, id')
+      @pre_lesson = "/grade" + @grade.to_s + "/" + @pre_lesson_info[0].unit_item_name + "/" + @pre_lesson_info[0].id.to_s
       @pre_lesson_class = ""
 
       @next_lesson = "#"
       @next_lesson_class =  " disabled"
 
     else
-      @pre_lesson_info = Lesson.where("number = ?", @grade_lesson_numbers[@lesson_index - 1]).select('grade, unit_item_name, id')
-      @pre_lesson = "/grade" + @pre_lesson_info[0].grade.to_s + "/" + @pre_lesson_info[0].unit_item_name + "/" + @pre_lesson_info[0].id.to_s
+      @pre_lesson_info = Lesson.where("id = ?", @grade_lesson_ids[@lesson_index.to_i - 1]).select('grade, unit_item_name, id')
+      @pre_lesson = "/grade" + @grade.to_s + "/" + @pre_lesson_info[0].unit_item_name + "/" + @pre_lesson_info[0].id.to_s
       @pre_lesson_class = ""
 
-      @next_lesson_info = Lesson.where("number = ?", @grade_lesson_numbers[@lesson_index + 1]).select('grade, unit_item_name, id')
-      @next_lesson = "/grade" + @next_lesson_info[0].grade.to_s + "/" + @next_lesson_info[0].unit_item_name + "/" + @next_lesson_info[0].id.to_s
+      @next_lesson_info = Lesson.where("id = ?", @grade_lesson_ids[@lesson_index.to_i + 1]).select('grade, unit_item_name, id')
+      @next_lesson = "/grade" + @grade.to_s + "/" + @next_lesson_info[0].unit_item_name + "/" + @next_lesson_info[0].id.to_s
       @next_lesson_class = ""
 
     end
