@@ -7,9 +7,9 @@
               <h3 class="tangen">レッスン一覧</h3>
               <% if @grade_lessons.present? %>
                 <% @grade_lessons.each do |lesson| %>
-                  <h4 class="tangen"><%= link_to lesson.title, @grade_unit_item_name+'/'+lesson.id.to_s %></h4>
-                  <p><%= lesson.summary %></p>
-                  <p><%= link_to raw(lesson.exercise)+'('+lesson.title+')', @grade_unit_item_name+'/'+lesson.id.to_s %></p>
+                  <h4 class="tangen lesson_title"><%= link_to lesson.title, @grade_unit_item_name+'/'+lesson.id.to_s %></h4>
+                  <p><%= raw(hbr(lesson.summary)) %></p>
+                  <p><%= link_to raw(hbr(lesson.exercise))+'('+lesson.title+')', @grade_unit_item_name+'/'+lesson.id.to_s %></p>
                 <% end %>
               <% else %>
                 <p>準備中です</p>

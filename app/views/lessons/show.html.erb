@@ -1,13 +1,13 @@
           <div class="row">
             <% @lesson_info.each do |lesson| %>
-              <div class="col-xs-10">
+              <div class="col-xs-9">
                 <h2><%= lesson.title %></h2>
               </div>
               <div id="check_lesson_info">
                 <%= render 'learnings/check_lesson' %>
               </div>
               <div class="col-xs-12">
-                <p><%= lesson.summary %></p>
+                <p><%= raw(hbr(lesson.summary)) %></p>
               </div>
               <div class="col-xs-12">
                 <%= image_tag '640x360.png', :alt => 'lesson_movie', :class => 'img-responsive lesson_movie'%>
@@ -23,39 +23,41 @@
                   <a href="<%= @next_lesson %>" class="btn btn-default<%= @next_lesson_class %>" style="width: 80px;"> 次へ </a>
                 </div>
               </div>
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#explanation" data-toggle="tab">解説</a></li>
-                <li><a href="#exercise" data-toggle="tab">練習問題</a></li>
-                <li><a href="#answer" data-toggle="tab">練習問題回答</a></li>
-              </ul>
-              <div class="tab-content">
-                <div class="tab-pane active" id="explanation">
-                  <p><%= raw(lesson.explanation) %></p>
-                </div>
-                <div class="tab-pane" id="exercise">
-                  <p><%= raw(lesson.exercise) %></p>
-              <% if lesson.exe_pdf.present? %>
-                <%= link_to '練習問題をPDFファイルでDLする', lesson.exe_pdf.url %>
-              <% end %>
-                </div>
-                <div class="tab-pane" id="answer">
-                  <p><%= raw(lesson.exercise_answer) %></p>
-                </div>
-              </div>
-              <hr>
-              <h3>要点・まとめ</h3>
-              <p><%= raw(lesson.point) %></p>
-              <% if user_signed_in? %>
-                <h3>学習メモ</h3>
-                <%= form_for @learning, remote: true do |f| %>
-                  <fieldset>
-                    <div class="form-group">
-                      <label for="exampleInput">レッスン内容などについて気になることを記入してください。</label>
-                      <%= f.text_area :memo, :class =>  "form-control", :placeholder => "メモ", :style => "height: 120px;", :value => @learning.memo %>
-                    </div>
-                    <%= f.submit 'メモを残す', :class => "btn btn-default" %>
-                  </fieldset>
+              <div class="col-xs-12">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#explanation" data-toggle="tab">解説</a></li>
+                  <li><a href="#exercise" data-toggle="tab">練習問題</a></li>
+                  <li><a href="#answer" data-toggle="tab">練習問題回答</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane active" id="explanation">
+                    <p><%= raw(hbr(lesson.explanation)) %></p>
+                  </div>
+                  <div class="tab-pane" id="exercise">
+                    <p><%= raw(hbr(lesson.exercise)) %></p>
+                <% if lesson.exe_pdf.present? %>
+                  <%= link_to '練習問題をPDFファイルでDLする', lesson.exe_pdf.url %>
                 <% end %>
-              <% end %>
+                  </div>
+                  <div class="tab-pane" id="answer">
+                    <p><%= raw(hbr(lesson.exercise_answer)) %></p>
+                  </div>
+                </div>
+                <hr>
+                <h3>要点・まとめ</h3>
+                <p><%= raw(hbr(lesson.point)) %></p>
+                <% if user_signed_in? %>
+                  <h3>学習メモ</h3>
+                  <%= form_for @learning, remote: true do |f| %>
+                    <fieldset>
+                      <div class="form-group">
+                        <label for="exampleInput">レッスン内容などについて気になることを記入してください。</label>
+                        <%= f.text_area :memo, :class =>  "form-control", :placeholder => "メモ", :style => "height: 120px;", :value => @learning.memo %>
+                      </div>
+                      <%= f.submit 'メモを残す', :class => "btn btn-default" %>
+                    </fieldset>
+                  <% end %>
+                <% end %>
+              </div>
             <% end %>
           </div>
