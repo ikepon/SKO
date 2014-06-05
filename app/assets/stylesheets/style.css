@@ -271,7 +271,7 @@ button.form-left {
 }
 
 .lesson_title {
-  padding-left: 5px;
+  margin-top: 50px;
   border-left: 5px solid red;
   line-height: 1.6em;
 }
