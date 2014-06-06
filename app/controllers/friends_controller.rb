@@ -19,6 +19,9 @@ class FriendsController < ApplicationController
 
     @user_id = current_user.id
 
+    @title = '友達'
+    @description = '友達になっている、申請しているユーザ一覧ページです。また友達の検索も可能です。'
+
 
     # 友達
     # Friendテーブル（友達状況）から、友達のidを取ってくる
@@ -85,6 +88,9 @@ class FriendsController < ApplicationController
 
     add_breadcrumb '友達', friends_path
     add_breadcrumb '友達詳細'
+
+    @title = '友達の詳細ページ'
+    @description = '友達の詳細ページになります。'
 
     @user_id = current_user.id
     @friend_id = params[:id].to_i

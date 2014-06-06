@@ -272,8 +272,9 @@ button.form-left {
 
 .lesson_title {
   margin-top: 50px;
+  padding-left: 6px;
   border-left: 5px solid red;
-  line-height: 1.6em;
+  line-height: 1.5em;
 }
 
 .nav-tabs {

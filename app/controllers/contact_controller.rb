@@ -18,12 +18,18 @@ class ContactController < ApplicationController
     add_breadcrumb 'お問合せ完了'
 
     @notice = params[:notice]
+
+    @title = 'お問合せ完了'
+    @description = 'お問合せが完了しました。'
   end
 
   def new
     add_breadcrumb 'お問合せ'
 
     @contact = Contact.new
+
+    @title = 'お問合せ'
+    @description = '当サイトへのお問合せ送信ページとなります。'
   end
 
   def create

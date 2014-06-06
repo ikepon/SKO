@@ -69,8 +69,8 @@ class LessonsController < ApplicationController
 
     @grade_lessons = Lesson.where("unit_item_name = ? and grade = ?", @grade_unit_item_name, @grade).select('id, title, summary, exercise, point')
 
-    @title = '中学1年生数学の' + @grade_unit_item_name
-    @description = '中学1年生で勉強する数学の単元「' + @grade_unit_item_name + '」のレッスン一覧です。'
+    @title = @grade_jp + '数学の' + @grade_unit_item_name
+    @description = @grade_jp + 'で勉強する数学の単元「' + @grade_unit_item_name + '」のレッスン一覧です。'
 
   end
 
@@ -88,8 +88,8 @@ class LessonsController < ApplicationController
 
     add_breadcrumb @lesson_info[0].title
 
-    @title = '中学1年生数学の' + @lesson_info[0].title
-    @description = '中学1年生で勉強する数学の単元「' + @grade_unit_item_name + '」の「' + @lesson_info[0].title + '」内容です。'
+    @title = @grade_jp + '数学の' + @lesson_info[0].title
+    @description = @grade_jp + 'で勉強する数学の単元「' + @grade_unit_item_name + '」の「' + @lesson_info[0].title + '」内容です。'
 
     #pre, next
     @grade_lesson_ids = Lesson.where("unit_item_name = ? and grade = ?", @grade_unit_item_name, @grade).order("number").pluck('id')
