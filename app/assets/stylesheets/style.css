@@ -118,7 +118,8 @@ a:hover {
 /* ヘッダー */
 
 #logo{
-  margin: 7px 0;
+  font-size: 23px;
+  color: #00984f;
 }
 
 .global {

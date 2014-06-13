@@ -1,41 +1,39 @@
 <div class="global">
-    <nav class="navbar navbar-default navbar-fixed-top col-lg-12">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">ビジュアル数学</a>
-        </div>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a id="logo" class="navbar-brand" href="/"><span class="blue">ビジュアル数学</span></a>
+    </div>
 
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <% if user_signed_in? %>
-              <li<% if params[:controller] == 'learnings' && params[:action] == 'index' %><%= ' class=active' %><% end %>><%= link_to 'マイページ', learnings_path, :style => "color:orange;" %></a></li>
-            <% end %>
-            <li<% if request.path_info[6,1] == '1' %><%= ' class=active' %><% end %>><%= link_to '中学1年生', grade1_index_path %></li>
-            <li<% if request.path_info[6,1] == '2' %><%= ' class=active' %><% end %>><%= link_to '中学2年生', grade2_index_path %></li>
-            <li<% if request.path_info[6,1] == '3' %><%= ' class=active' %><% end %>><%= link_to '中学3年生', grade3_index_path %></li>
-          </ul>
-          <div class="form-group navbar-form navbar-left hidden-xs hidden-sm">
-            <%= search_form_for @search, url: lessons_path do |f| %>
-              <%= f.text_field :summary_or_title_or_grade_or_category_name_or_category_summary_or_unit_name_or_unit_summary_or_unit_item_name_or_unit_item_summary_cont, :placeholder => "レッスン検索", :size => "13px", :class => "form-control" %>
-              <%= f.submit '検索', :class => "btn btn-default" %>
-            <% end %>
-          </div>
-          <ul class="nav navbar-nav navbar-right">
-            <li<% if params[:controller] == 'contact' && params[:action] == 'new' %><%= ' class=active' %><% end %>><%= link_to 'お問合せ', contact_path %></li>
-            <li>
-              <% if user_signed_in? %>
-                <%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
-              <% else %>
-                <%= link_to "ログイン", new_user_session_path %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+          <li<% if params[:controller] == 'learnings' && params[:action] == 'index' %><%= ' class=active' %><% end %>><%= link_to 'マイページ', learnings_path, :style => "color:orange;" %></a></li>
+        <% end %>
+        <li<% if request.path_info[6,1] == '1' %><%= ' class=active' %><% end %>><%= link_to '中学1年生', grade1_index_path %></li>
+        <li<% if request.path_info[6,1] == '2' %><%= ' class=active' %><% end %>><%= link_to '中学2年生', grade2_index_path %></li>
+        <li<% if request.path_info[6,1] == '3' %><%= ' class=active' %><% end %>><%= link_to '中学3年生', grade3_index_path %></li>
+      </ul>
+      <div class="form-group navbar-form navbar-left hidden-xs hidden-sm">
+        <%= search_form_for @search, url: lessons_path do |f| %>
+          <%= f.text_field :summary_or_title_or_grade_or_category_name_or_category_summary_or_unit_name_or_unit_summary_or_unit_item_name_or_unit_item_summary_cont, :placeholder => "レッスン検索", :size => "13px", :class => "form-control" %>
+          <%= f.submit '検索', :class => "btn btn-default" %>
+        <% end %>
       </div>
-    </nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li<% if params[:controller] == 'contact' && params[:action] == 'new' %><%= ' class=active' %><% end %>><%= link_to 'お問合せ', contact_path %></li>
+        <li>
+          <% if user_signed_in? %>
+            <%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
+          <% else %>
+            <%= link_to "ログイン", new_user_session_path %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </div>
