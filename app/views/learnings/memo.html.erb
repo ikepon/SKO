@@ -17,7 +17,7 @@
                         <% if m.memo.present? %>
                           <dt style="border-bottom: 1px solid #ccc; margin-bottom: 20px;">
                             <div class="row">
-                              <div class="col-xs-8">・ 【中学<%= m.lesson.grade %>年生】<%= m.lesson.unit_name %>：<%= m.lesson.unit_item_name %></div>
+                              <div class="col-xs-8">・ 【中学<%= m.lesson.grade %>年生】<%= m.lesson.unit_name %>：<%= m.lesson.unit_item_name %>：<%= m.lesson.title %></div>
                               <div class="col-xs-3"><a href="/grade<%= m.lesson.grade %>/<%= m.lesson.unit_item_name %>/<%= m.lesson.id %>">Lessonを見る</a></div>
                               <div class="col-xs-1"><span class="caret"></span></div>
                             </div>
@@ -35,7 +35,7 @@
                   <% if @checks.present? %>
                     <% @checks.each do |c| %>
                       <ul>
-                        <li style="border-bottom: 1px solid #ccc"><a href="/grade<%= c.lesson.grade %>/<%= c.lesson.unit_item_name %>/<%= c.lesson.id %>">【中学<%= c.lesson.grade %>年生】<%= c.lesson.unit_name %>：<%= c.lesson.unit_item_name %></a></li>
+                        <li style="border-bottom: 1px solid #ccc"><a href="/grade<%= c.lesson.grade %>/<%= c.lesson.unit_item_name %>/<%= c.lesson.id %>">【中学<%= c.lesson.grade %>年生】<%= c.lesson.unit_name %>：<%= c.lesson.unit_item_name %>：<%= c.lesson.title %></a></li>
                       </ul>
                     <% end %>
                   <% else %>
